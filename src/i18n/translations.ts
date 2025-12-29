@@ -19,6 +19,7 @@ export type TranslationContent = {
         title: string;
         p1: string;
         p2: string;
+        p3: string;
     };
     services: {
         kitchen: {
@@ -31,8 +32,18 @@ export type TranslationContent = {
         };
         improvement: {
             title: string;
+            subtitle: string;
             desc: string;
         };
+    };
+    contact: {
+        formTitle: string;
+        name: string;
+        email: string;
+        phone: string;
+        address: string;
+        message: string;
+        submit: string;
     };
 };
 
@@ -47,8 +58,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             contact: "Contact"
         },
         ecosystem: {
-            title: "Our Ecosystem",
-            subtitle: "Connecting Technology\nwith Living Spaces"
+            title: "Expertise & Connectivity",
+            subtitle: "Decades of craftsmanship\nmeeting modern living"
         },
         hero: {
             title: "Building Excellence with Sincerity",
@@ -57,12 +68,13 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         philosophy: {
             title: "Our Philosophy",
             p1: "Don't wait until you're ready to sell to remodel. Renovate now and enjoy it for yourself. Invest in a space that you will cherish every day, designed with trends that will stand the test of time, even 10 years later.",
-            p2: "We only use our own project photos. Every image you see is a result of our direct craftsmanship—real photos from real job sites, showing the authentic process of transformation."
+            p2: "Unlike many sites that use stock photos or AI-generated images, we only showcase our own authentic work. These are real results from real job sites, showing the true process of transformation.",
+            p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube since 2010."
         },
         services: {
             kitchen: {
                 title: "Kitchen Remodeling",
-                desc: "The kitchen is not just for cooking—it’s the heart of the home, the hub for family gatherings and social life. It's the most rewarding investment in your house. A true kitchen remodel involves complex systems: cabinetry, plumbing, electrical, tiles, and structural changes. We specialize in creating open-concept kitchens by expertly removing walls, backed by decades of architectural and wood structure expertise."
+                desc: "The kitchen is the heart of the home, the hub for family. Beyond cabinetry, we specialize in complex systems: plumbing, electrical, and structural wall removals for open-concept layouts, backed by decades of expertise."
             },
             bath: {
                 title: "Bath Remodeling",
@@ -70,8 +82,18 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             },
             improvement: {
                 title: "Home Improvement",
-                desc: "From additions to full-scale upgrades, we understand the soul of American wood-structure homes."
+                subtitle: "We provide the most complex and rewarding remodeling services, orchestrated by decades of experience.",
+                desc: "Meaningful upgrades within your budget—from flooring and deck transformations to essential repairs. Even for the smallest tasks, our expertise ensures your home's value is preserved. For quick local repairs, use our aeZ-Home-Solution app."
             }
+        },
+        contact: {
+            formTitle: "Request A Consultation",
+            name: "Name",
+            email: "Email",
+            phone: "Phone",
+            address: "Address",
+            message: "Project Details",
+            submit: "Send Request"
         }
     },
     ko: {
@@ -84,8 +106,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             contact: "상담문의"
         },
         ecosystem: {
-            title: "비즈니스 생태계",
-            subtitle: "첨단 기술과\n주거 공간의 연결"
+            title: "경험과 기술의 연결",
+            subtitle: "수십 년의 시공 노하우와\n주거 편의 시스템의 만남"
         },
         hero: {
             title: "진심을 짓는 프리미엄 건축",
@@ -94,12 +116,13 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         philosophy: {
             title: "우리의 철학",
             p1: "집 팔 때쯤에 고쳐서 남 좋은 일 시키지 마세요. 지금 고쳐서 당신이 먼저 누려야 합니다. 10년 뒤에 팔아도 손색없을 최신 트렌드로, 어설픈 업그레이드가 아닌 가치 있는 변화를 선물합니다.",
-            p2: "우리는 우리가 직접 시공한 사진만 사용합니다. 잡지나 인터넷에서 가져온 가짜 사진이 아닌, 실제 현장에서 땀 흘리며 완성한 정직한 시공 과정을 공개합니다."
+            p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. 우리는 2010년부터 지금까지 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 기록만을 공개합니다.",
+            p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요."
         },
         services: {
             kitchen: {
                 title: "키친 리모델링",
-                desc: "주방은 엄마의 조리 공간을 넘어 온 식구가 모이는 집의 심장입니다. 캐비닛 교체를 넘어 전기, 배관, 구조 변경까지 필요한 복합 전문가의 영역입니다. 우리는 오픈형 주방을 위한 벽 철거와 구조 변경 전문입니다."
+                desc: "주방은 온 식구가 모이는 집의 심장입니다. 단순한 캐비닛 교체를 넘어, 오픈형 주방을 위한 벽 철거와 복잡한 구조 변경까지 수십 년의 노하우로 완벽하게 해결합니다."
             },
             bath: {
                 title: "욕실 리모델링",
@@ -107,8 +130,19 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             },
             improvement: {
                 title: "집수리(업그레이드)",
-                desc: "바닥공사, 데크시공, 부분적인 집 업그레이드 및 수선이 필요한 곳을 전문가의 손길로 책임집니다. 미국식 목조 주택의 구조와 원리를 정확히 이해해야 집의 가치가 유지됩니다."
+                subtitle: "우리는 수십 년간의 경험을 바탕으로 가장 복합적이고 가치 있는 리모델링 서비스를 제공합니다.",
+                desc: "바닥재 교체, 데크 업그레이드 등 예산에 맞는 부분적 업그레이드만으로도 큰 만족감을 드릴 수 있습니다. 아주 작은 수리라도 망설이지 마세요. 목조 주택의 원리를 정확히 아는 전문가가 집의 가치를 지켜드립니다. 소소한 수리는 아래 홈솔루션 앱을 통해 편리하게 문의해 주세요."
             }
+        },
+        contact: {
+            formTitle: "상담 신청하기",
+            name: "성함",
+            email: "이메일",
+            phone: "전화번호",
+            address: "주소",
+            message: "공사 내용 (예: 주방 리모델링 등)",
+            submit: "문의하기"
         }
     }
 };
+
