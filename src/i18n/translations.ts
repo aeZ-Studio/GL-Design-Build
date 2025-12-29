@@ -1,12 +1,54 @@
-export const translations = {
+export type TranslationContent = {
+    motto: string;
+    license: string;
+    nav: {
+        services: string;
+        portfolio: string;
+        about: string;
+        contact: string;
+    };
+    ecosystem: {
+        title: string;
+        subtitle: string;
+    };
+    hero: {
+        title: string;
+        subtitle: string;
+    };
+    philosophy: {
+        title: string;
+        p1: string;
+        p2: string;
+    };
+    services: {
+        kitchen: {
+            title: string;
+            desc: string;
+        };
+        bath: {
+            title: string;
+            desc: string;
+        };
+        improvement: {
+            title: string;
+            desc: string;
+        };
+    };
+};
+
+export const translations: { en: TranslationContent; ko: TranslationContent } = {
     en: {
         motto: "God is Love, Great Living, Good Life",
         license: "Licensed & Insured | Virginia Class A Contractor (HIC, CBC, RBC)",
         nav: {
             services: "Services",
             portfolio: "Portfolio",
-            about: "About",
+            about: "Philosophy",
             contact: "Contact"
+        },
+        ecosystem: {
+            title: "Our Ecosystem",
+            subtitle: "Connecting Technology\nwith Living Spaces"
         },
         hero: {
             title: "Building Excellence with Sincerity",
@@ -38,8 +80,12 @@ export const translations = {
         nav: {
             services: "서비스",
             portfolio: "포트폴리오",
-            about: "회사소개",
+            about: "우리의 철학",
             contact: "상담문의"
+        },
+        ecosystem: {
+            title: "비즈니스 생태계",
+            subtitle: "첨단 기술과\n주거 공간의 연결"
         },
         hero: {
             title: "진심을 짓는 프리미엄 건축",

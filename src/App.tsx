@@ -4,12 +4,12 @@ import {
     Menu, X, Globe, Hammer, Droplets, Home,
     MessageCircle, Youtube, Facebook, LayoutGrid, ArrowRight
 } from 'lucide-react';
-import { translations } from './i18n/translations';
+import { translations, TranslationContent } from './i18n/translations';
 
 const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const t = translations[lang];
+    const t: TranslationContent = translations[lang];
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white font-['Outfit'] antialiased">
@@ -47,7 +47,6 @@ const App = () => {
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0a0a0a] z-10" />
-                    {/* Replace with actual project image later */}
                     <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center scale-105 active:scale-100 transition-transform duration-[10s]" />
                 </div>
 
@@ -104,19 +103,17 @@ const App = () => {
                             {t.philosophy.p2}
                         </p>
                         <div className="pt-8 flex items-center gap-6 opacity-40">
-                            <Youtube size={32} />
-                            <Facebook size={32} />
+                            <a href="https://www.youtube.com/@VA_Cornerstone" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Youtube size={32} /></a>
+                            <a href="#" className="hover:text-white transition-colors"><Facebook size={32} /></a>
                             <div className="h-8 w-[1px] bg-white" />
                             <span className="text-[10px] font-bold tracking-[0.4em] uppercase whitespace-nowrap">Digital Presence</span>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="aspect-[3/4] rounded-3xl overflow-hidden mt-12 bg-white/5 border border-white/5">
-                            {/* Progress photo placeholder */}
                             <div className="w-full h-full bg-slate-800 flex items-center justify-center text-[10px] text-white/20 uppercase font-black">Process Image</div>
                         </div>
                         <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/5">
-                            {/* Before/After photo placeholder */}
                             <div className="w-full h-full bg-slate-700 flex items-center justify-center text-[10px] text-white/20 uppercase font-black tracking-widest text-center px-4">Direct Craftsmanship</div>
                         </div>
                     </div>
@@ -137,7 +134,6 @@ const App = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Kitchen */}
                         <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
                             <div className="w-16 h-16 bg-amber-500 text-black rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
                                 <Hammer size={32} />
@@ -150,7 +146,6 @@ const App = () => {
                             </p>
                         </div>
 
-                        {/* Bath */}
                         <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
                             <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-500 group-hover:text-black transition-all">
                                 <Droplets size={32} />
@@ -163,7 +158,6 @@ const App = () => {
                             </p>
                         </div>
 
-                        {/* Improvement */}
                         <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
                             <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-500 group-hover:text-black transition-all">
                                 <Home size={32} />
@@ -183,31 +177,31 @@ const App = () => {
             <section className="py-24 px-6 relative overflow-hidden bg-black text-center">
                 <div className="absolute inset-0 bg-amber-500/5 blur-[120px] rounded-full translate-x-1/2" />
                 <div className="max-w-4xl mx-auto relative z-10">
-                    <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6 block">Our Ecosystem</span>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-10 leading-tight">
-                        Connecting Technology <br />with Living Spaces
+                    <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6 block">{t.ecosystem.title}</span>
+                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-10 leading-tight whitespace-pre-line">
+                        {t.ecosystem.subtitle}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                        <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-amber-500/40 transition-all flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-rose-500 rounded-xl flex items-center justify-center shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
-                                    <LayoutGrid size={24} />
-                                </div>
-                                <div className="text-left">
-                                    <span className="block font-black text-lg">aeZ Studio Hub</span>
-                                    <span className="text-[10px] text-white/40 uppercase font-black tracking-widest">Digital Solutions</span>
-                                </div>
-                            </div>
-                            <ArrowRight className="text-white/20 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
-                        </a>
                         <a href="https://aez-homesolution.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-amber-500/40 transition-all flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
                                     <Hammer size={24} />
                                 </div>
                                 <div className="text-left">
-                                    <span className="block font-black text-lg">aeZ Home Solution</span>
+                                    <span className="block font-black text-lg">aeZ-Home-Solution</span>
                                     <span className="text-[10px] text-white/40 uppercase font-black tracking-widest">Local Repair App</span>
+                                </div>
+                            </div>
+                            <ArrowRight className="text-white/20 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
+                        </a>
+                        <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-amber-500/40 transition-all flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-rose-500 rounded-xl flex items-center justify-center shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
+                                    <LayoutGrid size={24} />
+                                </div>
+                                <div className="text-left">
+                                    <span className="block font-black text-lg">aeZ-Hub</span>
+                                    <span className="text-[10px] text-white/40 uppercase font-black tracking-widest">Digital Solutions</span>
                                 </div>
                             </div>
                             <ArrowRight className="text-white/20 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
