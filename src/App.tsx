@@ -17,15 +17,39 @@ const App = () => {
     const [formState, setFormState] = useState({
         name: '', email: '', phone: '', address: '', message: ''
     });
+    const [submitting, setSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const filteredPortfolio = filter === 'all'
         ? portfolioData
         : portfolioData.filter(item => item.category === filter);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Here we would normally implement the email sending logic
-        alert('Thank you! Your request has been sent to GLdesignBuild703@gmail.com');
+        setSubmitting(true);
+
+        try {
+            const response = await fetch("https://formspree.io/f/xvgzbbwa", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formState,
+                    to: "GLdesignBuild703@gmail.com"
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                setFormState({ name: '', email: '', phone: '', address: '', message: '' });
+                alert(lang === 'ko' ? '문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!' : 'Your request has been sent! We will contact you soon.');
+            } else {
+                alert(lang === 'ko' ? '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' : 'Something went wrong. Please try again later.');
+            }
+        } catch (error) {
+            alert(lang === 'ko' ? '서버 연결에 실패했습니다.' : 'Failed to connect to the server.');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -83,7 +107,7 @@ const App = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6"
                     >
-                        Since 1999
+                        Since 2007
                     </motion.span>
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
@@ -110,7 +134,7 @@ const App = () => {
                         <a href="#contact" className="w-full md:w-auto bg-amber-500 text-black px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2">
                             Request Consultation
                         </a>
-                        <a href="https://open.kakao.com/o/sXXXXXXXX" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-[#FEE500] text-[#3c1e1e] px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-xl shadow-yellow-500/10 flex items-center justify-center gap-2">
+                        <a href="https://open.kakao.com/o/gQlXUX8h" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-[#FEE500] text-[#3c1e1e] px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-xl shadow-yellow-500/10 flex items-center justify-center gap-2">
                             <MessageCircle size={20} />
                             KakaoTalk
                         </a>
@@ -134,15 +158,20 @@ const App = () => {
                                 {t.philosophy.p3}
                             </p>
                             <div className="pt-8 flex items-center gap-8">
-                                <a href="https://www.facebook.com/GLdesignBuildcom/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#1877F2] transition-all group">
+                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#1877F2] transition-all group">
                                     <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#1877F2]/10 transition-colors"><Facebook size={24} /></div>
                                     <span className="text-[10px] font-bold uppercase tracking-widest">Facebook</span>
                                 </a>
-                                <a href="https://www.flickr.com/photos/90832744@N05/albums" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#ff0084] transition-all group">
-                                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#ff0084]/10 transition-colors"><Image size={24} /></div>
+                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#ff0084] transition-all group">
+                                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#ff0084]/10 transition-colors">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <circle cx="7" cy="12" r="5" fill="#0063dc" />
+                                            <circle cx="17" cy="12" r="5" fill="#ff0084" />
+                                        </svg>
+                                    </div>
                                     <span className="text-[10px] font-bold uppercase tracking-widest">Flickr</span>
                                 </a>
-                                <a href="https://www.youtube.com/@GLdesignBuild" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#FF0000] transition-all group">
+                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#FF0000] transition-all group">
                                     <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#FF0000]/10 transition-colors"><Youtube size={24} /></div>
                                     <span className="text-[10px] font-bold uppercase tracking-widest">YouTube</span>
                                 </a>
@@ -221,15 +250,15 @@ const App = () => {
                             <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em]">Masterpieces</span>
                             <h2 className="text-4xl md:text-6xl font-black tracking-tighter">{t.nav.portfolio}</h2>
                         </div>
-                        <div className="flex p-1 bg-white/5 rounded-full border border-white/10">
-                            {(['all', 'kitchen', 'bath'] as const).map((cat) => (
+                        <div className="flex p-1 bg-white/5 rounded-full border border-white/10 overflow-x-auto">
+                            {(['all', 'kitchen', 'bath', 'improvement'] as const).map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setFilter(cat)}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${filter === cat ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-white/40 hover:text-white'
+                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${filter === cat ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-white/40 hover:text-white'
                                         }`}
                                 >
-                                    {cat}
+                                    {cat === 'improvement' ? (lang === 'ko' ? '업그레이드' : 'Home') : cat}
                                 </button>
                             ))}
                         </div>
@@ -265,15 +294,18 @@ const App = () => {
                         {t.ecosystem.subtitle}
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                        <a href="https://www.facebook.com/GLdesignBuildcom/" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1877F2]/40 transition-all flex flex-col items-center gap-3">
+                        <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1877F2]/40 transition-all flex flex-col items-center gap-3">
                             <Facebook className="text-white/20 group-hover:text-[#1877F2] transition-colors" size={32} />
                             <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Facebook</span>
                         </a>
-                        <a href="https://www.flickr.com/photos/90832744@N05/albums" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#ff0084]/40 transition-all flex flex-col items-center gap-3">
-                            <Image className="text-white/20 group-hover:text-[#ff0084] transition-colors" size={32} />
+                        <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#ff0084]/40 transition-all flex flex-col items-center gap-3">
+                            <div className="flex gap-1 group-hover:scale-110 transition-transform">
+                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#0063dc]" />
+                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#ff0084]" />
+                            </div>
                             <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Flickr Gallery</span>
                         </a>
-                        <a href="https://www.youtube.com/@GLdesignBuild" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF0000]/40 transition-all flex flex-col items-center gap-3">
+                        <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF0000]/40 transition-all flex flex-col items-center gap-3">
                             <Youtube className="text-white/20 group-hover:text-[#FF0000] transition-colors" size={32} />
                             <span className="text-[10px] uppercase font-black tracking-widest text-white/40">YouTube</span>
                         </a>
@@ -325,7 +357,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 pt-4">
-                                    <a href="https://open.kakao.com/o/sXXXXXXXX" target="_blank" rel="noopener noreferrer" className="bg-[#FEE500] text-[#3c1e1e] px-8 py-3 rounded-2xl font-black text-sm flex items-center gap-2 hover:scale-105 transition-all">
+                                    <a href="https://open.kakao.com/o/gQlXUX8h" target="_blank" rel="noopener noreferrer" className="bg-[#FEE500] text-[#3c1e1e] px-8 py-3 rounded-2xl font-black text-sm flex items-center gap-2 hover:scale-105 transition-all">
                                         <MessageCircle size={18} />
                                         KakaoTalk OpenChat
                                     </a>
@@ -338,31 +370,38 @@ const App = () => {
                             <h3 className="text-2xl font-black mb-8 tracking-tight">{t.contact.formTitle}</h3>
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <input
-                                        type="text"
-                                        placeholder={t.contact.name}
-                                        required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
-                                        value={formState.name}
-                                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                                    />
-                                    <input
-                                        type="email"
-                                        placeholder={t.contact.email}
-                                        required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
-                                        value={formState.email}
-                                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder={`${t.contact.name} *`}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
+                                            value={formState.name}
+                                            onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="relative">
+                                        <input
+                                            type="email"
+                                            placeholder={`${t.contact.email} *`}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
+                                            value={formState.email}
+                                            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <input
-                                        type="text"
-                                        placeholder={t.contact.phone}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
-                                        value={formState.phone}
-                                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder={`${t.contact.phone} *`}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
+                                            value={formState.phone}
+                                            onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                                        />
+                                    </div>
                                     <input
                                         type="text"
                                         placeholder={t.contact.address}
@@ -378,9 +417,14 @@ const App = () => {
                                     value={formState.message}
                                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                                 />
-                                <button type="submit" className="w-full bg-amber-500 text-black py-5 rounded-xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-amber-600 transition-all">
-                                    <Send size={18} />
-                                    {t.contact.submit}
+                                <button
+                                    type="submit"
+                                    disabled={submitting}
+                                    className={`w-full py-5 rounded-xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 transition-all ${submitting ? 'bg-amber-500/50 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-600 text-black'
+                                        }`}
+                                >
+                                    <Send size={18} className={submitting ? 'animate-pulse' : ''} />
+                                    {submitting ? (lang === 'ko' ? '전송 중...' : 'Sending...') : t.contact.submit}
                                 </button>
                             </form>
                         </div>
@@ -391,14 +435,19 @@ const App = () => {
                             <div className="flex flex-col items-center lg:items-start">
                                 <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-4" />
                                 <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase mb-4">{t.motto}</p>
-                                <p className="text-white/30 text-[10px] leading-relaxed text-center lg:text-left">
-                                    Virginia Class A Contractor (HIC, CBC, RBC) | Licensed & Insured
+                                <p className="text-white/30 text-[10px] leading-relaxed text-center lg:text-left mt-2">
+                                    {t.license}
                                 </p>
                             </div>
                             <div className="flex gap-8">
-                                <a href="https://www.facebook.com/GLdesignBuildcom/" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#1877F2] transition-colors"><Facebook size={20} /></a>
-                                <a href="https://www.youtube.com/@GLdesignBuild" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#FF0000] transition-colors"><Youtube size={20} /></a>
-                                <a href="https://www.flickr.com/photos/90832744@N05/albums" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white transition-colors"><Image size={20} /></a>
+                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#1877F2] transition-colors"><Facebook size={20} /></a>
+                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#FF0000] transition-colors"><Youtube size={20} /></a>
+                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#ff0084] transition-colors">
+                                    <div className="flex gap-0.5">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-current" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-[#ff0084]" />
+                                    </div>
+                                </a>
                             </div>
                             <p className="text-[10px] font-bold tracking-[0.6em] text-white/10 uppercase">© 2025 GL Design+Build.</p>
                         </div>

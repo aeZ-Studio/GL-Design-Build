@@ -81,4 +81,31 @@ export const portfolioData: PortfolioItem[] = [
         descKo: "좁은 공간을 효율적이고 세련되게 꾸민 욕실입니다.",
         image: "bath-4.jpg",
     },
+    {
+        id: 9,
+        category: 'improvement',
+        titleEn: "Premium Composite Deck",
+        titleKo: "프리미엄 합성 데크 시공",
+        descEn: "Durable and beautiful outdoor living space built for longevity.",
+        descKo: "반영구적인 내구성과 미관을 모두 잡은 고품격 데크 시공입니다.",
+        image: "kitchen-5.jpg", // Placeholder until real improvement images are added
+    },
+    {
+        id: 10,
+        category: 'improvement',
+        titleEn: "Hardwood Flooring Upgrade",
+        titleKo: "고급 원목 마루 시공",
+        descEn: "Modernizing the entire home interior with premium hardwood textures.",
+        descKo: "집 전체의 분위기를 최고급 원목 마루로 고급스럽게 바꿨습니다.",
+        image: "kitchen-6.jpg", // Placeholder until real improvement images are added
+    },
+    {
+        id: 11,
+        category: 'improvement',
+        titleEn: "Custom Structural Improvement",
+        titleKo: "집 구조 개선 및 수리",
+        descEn: "Expert structural repairs ensuring home safety and value.",
+        descKo: "전문적인 구조 진단과 시공으로 집의 수명을 연장했습니다.",
+        image: "kitchen-7.jpg", // Placeholder until real improvement images are added
+    },
 ];

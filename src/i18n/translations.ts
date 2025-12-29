@@ -69,7 +69,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             title: "Our Philosophy",
             p1: "Don't wait until you're ready to sell to remodel. Renovate now and enjoy it for yourself. Invest in a space that you will cherish every day, designed with trends that will stand the test of time, even 10 years later.",
             p2: "Unlike many sites that use stock photos or AI-generated images, we only showcase our own authentic work. These are real results from real job sites, showing the true process of transformation.",
-            p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube since 2010."
+            p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube since 2007."
         },
         services: {
             kitchen: {
@@ -116,8 +116,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         philosophy: {
             title: "우리의 철학",
             p1: "집 팔 때쯤에 고쳐서 남 좋은 일 시키지 마세요. 지금 고쳐서 당신이 먼저 누려야 합니다. 10년 뒤에 팔아도 손색없을 최신 트렌드로, 어설픈 업그레이드가 아닌 가치 있는 변화를 선물합니다.",
-            p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. 우리는 2010년부터 지금까지 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 기록만을 공개합니다.",
-            p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요."
+            p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. 우리는 2007년부터 지금까지 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 기록만을 공개합니다.",
+            p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요 (Since 2007)."
         },
         services: {
             kitchen: {
