@@ -106,8 +106,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
                 desc: "가장 개인적이고 소중한 공간을 쉼이 있는 고품격 욕실로 변화시켜 드립니다."
             },
             improvement: {
-                title: "홈 임프루브먼트",
-                desc: "증축부터 전체 수리까지, 미국식 목조 주택에 대한 깊은 이해를 바탕으로 시공합니다."
+                title: "집수리(업그레이드)",
+                desc: "바닥공사, 데크시공, 부분적인 집 업그레이드 및 수선이 필요한 곳을 전문가의 손길로 책임집니다. 미국식 목조 주택의 구조와 원리를 정확히 이해해야 집의 가치가 유지됩니다."
             }
         }
     }

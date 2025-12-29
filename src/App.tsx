@@ -6,10 +6,17 @@ import {
 } from 'lucide-react';
 import { translations, TranslationContent } from './i18n/translations';
 
+import { portfolioData } from './data/portfolio';
+
 const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
+    const [filter, setFilter] = useState<'all' | 'kitchen' | 'bath' | 'improvement'>('all');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const t: TranslationContent = translations[lang];
+
+    const filteredPortfolio = filter === 'all'
+        ? portfolioData
+        : portfolioData.filter(item => item.category === filter);
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white font-['Outfit'] antialiased">
@@ -47,7 +54,14 @@ const App = () => {
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0a0a0a] z-10" />
-                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center scale-105 active:scale-100 transition-transform duration-[10s]" />
+                    <img
+                        src="/projects/hero.jpg"
+                        alt="GL Design+Build Hero"
+                        className="w-full h-full object-cover scale-105 transition-transform duration-[10s]"
+                        onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop';
+                        }}
+                    />
                 </div>
 
                 <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
