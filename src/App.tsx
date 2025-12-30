@@ -525,27 +525,27 @@ const App = () => {
                         </div>
                     </div>
 
-                    <div className="mt-32 pt-16 border-t border-white/5">
+                    <div className="mt-20 pt-12 border-t border-white/5">
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                             <div className="flex flex-col items-center lg:items-start">
-                                <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-4" />
-                                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                                    <span className="text-[9px] font-black text-amber-500 uppercase tracking-widest">{t.license}</span>
+                                <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-6" />
+                                <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 mb-6 group hover:bg-amber-500/20 transition-all duration-300">
+                                    <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] animate-pulse" />
+                                    <span className="text-xs md:text-sm font-black text-amber-500 uppercase tracking-wider">{t.license}</span>
                                 </div>
-                                <p className="text-white/40 text-[8px] min-[375px]:text-[10px] font-bold tracking-[0.3em] min-[375px]:tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
+                                <p className="text-white/40 text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
                             </div>
-                            <div className="flex gap-8">
-                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform"><Facebook size={20} /></a>
-                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:scale-110 transition-transform"><Youtube size={20} /></a>
-                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+                            <div className="flex gap-10">
+                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2]/60 hover:text-[#1877F2] hover:scale-110 transition-all"><Facebook size={24} /></a>
+                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-[#FF0000]/60 hover:text-[#FF0000] hover:scale-110 transition-all"><Youtube size={24} /></a>
+                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 hover:scale-110 transition-all">
                                     <div className="flex gap-0.5">
-                                        <span className="w-2.5 h-2.5 rounded-full bg-[#0063dc]" />
-                                        <span className="w-2.5 h-2.5 rounded-full bg-[#ff0084]" />
+                                        <span className="w-3 h-3 rounded-full bg-[#0063dc]" />
+                                        <span className="w-3 h-3 rounded-full bg-[#ff0084]" />
                                     </div>
                                 </a>
                             </div>
-                            <p className="text-[10px] font-bold tracking-[0.6em] text-white/10 uppercase">© 2025 GL Design+Build.</p>
+                            <p className="text-xs font-bold tracking-[0.4em] text-white/10 uppercase">© 2025 GL Design+Build.</p>
                         </div>
                     </div>
                 </div>
@@ -589,8 +589,10 @@ const App = () => {
 
                                 {/* Staging Disclaimer */}
                                 {selectedProject.isStaging && (currentImgIndex === 0 || currentImgIndex === 1) && (
-                                    <div className="absolute bottom-6 left-6 z-20 px-4 py-2 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 text-[9px] md:text-[10px] font-medium text-white/80 tracking-tight italic max-w-[80%] leading-snug">
-                                        These are photos of the actual construction site, and after completion, some decorative items were added using AI.
+                                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 w-[85%] max-w-sm">
+                                        <div className="px-4 py-2.5 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 text-[8px] md:text-[10px] font-medium text-white/60 tracking-tight italic text-center leading-snug">
+                                            "These are photos of the actual construction site, and after completion, some decorative items were added using AI."
+                                        </div>
                                     </div>
                                 )}
 
