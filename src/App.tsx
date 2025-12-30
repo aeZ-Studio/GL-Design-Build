@@ -158,22 +158,22 @@ const App = () => {
                                 {t.philosophy.p3}
                             </p>
                             <div className="pt-8 flex items-center gap-8">
-                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#1877F2] transition-all group">
-                                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#1877F2]/10 transition-colors"><Facebook size={24} /></div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest">Facebook</span>
+                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-[#1877F2]/60 hover:text-[#1877F2] transition-all group">
+                                    <div className="p-3 bg-[#1877F2]/5 rounded-2xl group-hover:bg-[#1877F2]/10 transition-colors"><Facebook size={24} /></div>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white/60">Facebook</span>
                                 </a>
                                 <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#ff0084] transition-all group">
                                     <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#ff0084]/10 transition-colors">
-                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <svg viewBox="0 0 24 24" width="24" height="24">
                                             <circle cx="7" cy="12" r="5" fill="#0063dc" />
                                             <circle cx="17" cy="12" r="5" fill="#ff0084" />
                                         </svg>
                                     </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest">Flickr</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white/60">Flickr</span>
                                 </a>
-                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-white/40 hover:text-[#FF0000] transition-all group">
-                                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-[#FF0000]/10 transition-colors"><Youtube size={24} /></div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest">YouTube</span>
+                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-[#FF0000]/60 hover:text-[#FF0000] transition-all group">
+                                    <div className="p-3 bg-[#FF0000]/5 rounded-2xl group-hover:bg-[#FF0000]/10 transition-colors"><Youtube size={24} /></div>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white/60">YouTube</span>
                                 </a>
                             </div>
                         </div>
@@ -434,17 +434,18 @@ const App = () => {
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                             <div className="flex flex-col items-center lg:items-start">
                                 <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-4" />
-                                <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase mb-4">{t.motto}</p>
-                                <p className="text-white/30 text-[10px] leading-relaxed text-center lg:text-left mt-2">
-                                    {t.license}
-                                </p>
+                                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                                    <span className="text-[9px] font-black text-amber-500 uppercase tracking-widest">{t.license}</span>
+                                </div>
+                                <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase">{t.motto}</p>
                             </div>
                             <div className="flex gap-8">
-                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#1877F2] transition-colors"><Facebook size={20} /></a>
-                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#FF0000] transition-colors"><Youtube size={20} /></a>
-                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#ff0084] transition-colors">
+                                <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform"><Facebook size={20} /></a>
+                                <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:scale-110 transition-transform"><Youtube size={20} /></a>
+                                <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
                                     <div className="flex gap-0.5">
-                                        <span className="w-2.5 h-2.5 rounded-full bg-current" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-[#0063dc]" />
                                         <span className="w-2.5 h-2.5 rounded-full bg-[#ff0084]" />
                                     </div>
                                 </a>

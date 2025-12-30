@@ -67,7 +67,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         },
         philosophy: {
             title: "Our Philosophy",
-            p1: "Don't wait until you're ready to sell to remodel. Renovate now and enjoy it for yourself. Invest in a space that you will cherish every day, designed with trends that will stand the test of time, even 10 years later.",
+            p1: "Don't postpone your dream home for the sake of future resale. You deserve to experience a space designed for your comfort and style today. We create timeless elegance that enhances your daily living while ensuring lasting value for years to come.",
             p2: "Unlike many sites that use stock photos or AI-generated images, we only showcase our own authentic work. These are real results from real job sites, showing the true process of transformation.",
             p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube since 2007."
         },
@@ -98,7 +98,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
     },
     ko: {
         motto: "God is Love, Great Living, Good Life",
-        license: "Commonwealth of Virginia Class A Contractor 최상위 건축면허 (HIC, CBC, RBC) & 보험 완비",
+        license: "Commonwealth of Virginia Class A Contractor '최상위 건축면허(HIC, CBC, RBC)' & 보험 완비",
         nav: {
             services: "서비스",
             portfolio: "포트폴리오",
@@ -115,7 +115,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         },
         philosophy: {
             title: "우리의 철학",
-            p1: "집 팔 때쯤에 고쳐서 남 좋은 일 시키지 마세요. 지금 고쳐서 당신이 먼저 누려야 합니다. 10년 뒤에 팔아도 손색없을 최신 트렌드로, 어설픈 업그레이드가 아닌 가치 있는 변화를 선물합니다.",
+            p1: "오직 미래의 가치만을 위해 리모델링을 미루지 마세요. 지금 이 순간, 당신의 삶에 품격을 더하는 변화를 먼저 누릴 자격이 있습니다. 10년 뒤에도 변치 않을 우아함으로 당신의 소중한 공간을 완성합니다.",
             p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. 우리는 2007년부터 지금까지 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 기록만을 공개합니다.",
             p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요 (Since 2007)."
         },
