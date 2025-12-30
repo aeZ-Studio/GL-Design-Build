@@ -589,9 +589,9 @@ const App = () => {
 
                                 {/* Staging Disclaimer */}
                                 {selectedProject.isStaging && (currentImgIndex === 0 || currentImgIndex === 1) && (
-                                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 w-auto max-w-[90%]">
-                                        <div className="px-3 py-1.5 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5 text-[7px] md:text-[9px] font-medium text-white/40 tracking-tight italic text-center leading-tight">
-                                            "These are photos of the actual construction site, and after completion, some decorative items were added using AI."
+                                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 w-auto max-w-[95%]">
+                                        <div className="px-3 py-1 bg-black/30 backdrop-blur-md rounded-lg border border-white/5 text-[8px] font-medium text-white/30 tracking-tight italic text-center leading-none">
+                                            AI-enhanced staging: Decorative items added to actual site photos.
                                         </div>
                                     </div>
                                 )}
@@ -615,7 +615,7 @@ const App = () => {
                                 )}
 
                                 {/* Pagination Dots */}
-                                <div className="absolute bottom-6 right-0 left-0 flex justify-center gap-2 z-20">
+                                <div className="absolute bottom-12 right-0 left-0 flex justify-center gap-2 z-20">
                                     {projectImages.map((_, idx) => (
                                         <div
                                             key={idx}
