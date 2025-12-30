@@ -319,17 +319,22 @@ const App = () => {
                             <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em]">Masterpieces</span>
                             <h2 className="text-4xl md:text-6xl font-black tracking-tighter">{t.nav.portfolio}</h2>
                         </div>
-                        <div className="flex p-1 bg-white/5 rounded-full border border-white/10 overflow-x-auto">
-                            {(['all', 'kitchen', 'bath', 'improvement'] as const).map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setFilter(cat)}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${filter === cat ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-white/40 hover:text-white'
-                                        }`}
-                                >
-                                    {cat === 'improvement' ? (lang === 'ko' ? '업그레이드' : 'Home') : cat}
-                                </button>
-                            ))}
+                        <div className="flex p-1.5 bg-white/5 rounded-full border border-white/10 overflow-x-auto scrollbar-hide">
+                            <div className="flex gap-1 px-1">
+                                {(['all', 'kitchen', 'bath', 'improvement'] as const).map((cat) => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setFilter(cat)}
+                                        className={`px-6 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${filter === cat ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-white/40 hover:text-white'
+                                            }`}
+                                    >
+                                        {cat === 'all' ? (lang === 'ko' ? '전체' : 'All') :
+                                            cat === 'kitchen' ? (lang === 'ko' ? '키친' : 'Kitchen') :
+                                                cat === 'bath' ? (lang === 'ko' ? '바스' : 'Bath') :
+                                                    (lang === 'ko' ? '업그레이드' : 'Home Improvement')}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -557,14 +562,14 @@ const App = () => {
                         onClick={() => setSelectedProject(null)}
                     >
                         <button
-                            className="absolute top-8 right-8 z-[110] p-4 bg-white/5 hover:bg-white/10 rounded-full transition-colors text-white/60 hover:text-white"
+                            className="absolute top-4 right-4 md:top-8 md:right-8 z-[120] p-4 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-full transition-colors text-white/60 hover:text-white border border-white/10"
                             onClick={() => setSelectedProject(null)}
                         >
                             <X size={24} />
                         </button>
 
                         <div
-                            className="relative w-full max-w-6xl aspect-[16/10] bg-white/5 rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-white/10"
+                            className="relative w-full max-w-6xl h-full md:h-auto md:aspect-[16/10] bg-[#0a0a0a] rounded-3xl md:rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-white/10 overflow-y-auto md:overflow-visible"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Image Container */}
@@ -578,14 +583,14 @@ const App = () => {
                                         transition={{ duration: 0.4 }}
                                         src={`/Project/${projectImages[currentImgIndex]}`}
                                         alt={selectedProject.titleEn}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-contain md:object-cover"
                                     />
                                 </AnimatePresence>
 
                                 {/* Staging Disclaimer */}
                                 {selectedProject.isStaging && (currentImgIndex === 0 || currentImgIndex === 1) && (
-                                    <div className="absolute bottom-6 left-6 z-20 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full border border-white/5 text-[9px] font-bold text-white/60 tracking-tighter italic">
-                                        소품만 AI가 배치하는 것을 도와주었습니다.
+                                    <div className="absolute bottom-6 left-6 z-20 px-4 py-2 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 text-[9px] md:text-[10px] font-medium text-white/80 tracking-tight italic max-w-[80%] leading-snug">
+                                        These are photos of the actual construction site, and after completion, some decorative items were added using AI.
                                     </div>
                                 )}
 
@@ -619,7 +624,7 @@ const App = () => {
                             </div>
 
                             {/* Info Container */}
-                            <div className="w-full md:w-80 p-8 md:p-12 flex flex-col justify-center bg-[#0a0a0a] border-l border-white/5">
+                            <div className="w-full md:w-96 p-6 md:p-12 flex flex-col justify-center bg-[#0a0a0a] border-t md:border-t-0 md:border-l border-white/5 shrink-0">
                                 <div className="space-y-6">
                                     <div>
                                         <span className="text-amber-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
