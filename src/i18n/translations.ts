@@ -83,7 +83,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             improvement: {
                 title: "Home Improvement",
                 subtitle: "We provide the most complex and rewarding remodeling services, orchestrated by decades of experience.",
-                desc: "Meaningful upgrades within your budget—from flooring and deck transformations to essential repairs. Even for the smallest tasks, our expertise ensures your home's value is preserved. For quick local repairs, use our aeZ-Home-Solution app."
+                desc: "Meaningful upgrades within your budget—from flooring and deck transformations to essential repairs. Even for the smallest tasks, our expertise ensures your home's value is preserved. For quick local repairs, please click the clock link below."
             }
         },
         contact: {
@@ -131,7 +131,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             improvement: {
                 title: "집수리(업그레이드)",
                 subtitle: "우리는 수십 년간의 경험을 바탕으로 가장 복합적이고 가치 있는 리모델링 서비스를 제공합니다.",
-                desc: "바닥재 교체, 데크 업그레이드 등 예산에 맞는 부분적 업그레이드만으로도 큰 만족감을 드릴 수 있습니다. 아주 작은 수리라도 망설이지 마세요. 목조 주택의 원리를 정확히 아는 전문가가 집의 가치를 지켜드립니다. 소소한 수리는 아래 홈솔루션 앱을 통해 편리하게 문의해 주세요."
+                desc: "바닥재 교체, 데크 업그레이드 등 예산에 맞는 부분적 업그레이드만으로도 큰 만족감을 드릴 수 있습니다. 아주 작은 수리라도 망설이지 마세요. 목조 주택의 원리를 정확히 아는 전문가가 집의 가치를 지켜드립니다. 소소한 수리는 아래 시계가 그려진 링크를 눌러주세요."
             }
         },
         contact: {

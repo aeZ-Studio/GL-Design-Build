@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Menu, X, Globe, Droplets, Home,
     MessageCircle, Youtube, Facebook,
-    Utensils, Mail, MapPin, Send, Hammer,
+    Utensils, Mail, MapPin, Send, Hammer, Clock,
     ChevronLeft, ChevronRight, Maximize2
 } from 'lucide-react';
 import { translations, TranslationContent } from './i18n/translations';
@@ -43,6 +43,11 @@ const App = () => {
     const filteredPortfolio = filter === 'all'
         ? portfolioData
         : portfolioData.filter(item => item.category === filter);
+
+    const handleServiceClick = (category: 'kitchen' | 'bath' | 'improvement') => {
+        setFilter(category);
+        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -272,7 +277,10 @@ const App = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
+                        <div
+                            onClick={() => handleServiceClick('kitchen')}
+                            className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500 cursor-pointer hover:bg-white/10"
+                        >
                             <div className="w-16 h-16 bg-amber-500 text-black rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
                                 <Utensils size={32} />
                             </div>
@@ -284,7 +292,10 @@ const App = () => {
                             </p>
                         </div>
 
-                        <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
+                        <div
+                            onClick={() => handleServiceClick('bath')}
+                            className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500 cursor-pointer hover:bg-white/10"
+                        >
                             <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-500 group-hover:text-black transition-all">
                                 <Droplets size={32} />
                             </div>
@@ -296,7 +307,10 @@ const App = () => {
                             </p>
                         </div>
 
-                        <div className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500">
+                        <div
+                            onClick={() => handleServiceClick('improvement')}
+                            className="group bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-amber-500/20 transition-all duration-500 cursor-pointer hover:bg-white/10"
+                        >
                             <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-500 group-hover:text-black transition-all">
                                 <Home size={32} />
                             </div>
@@ -307,6 +321,43 @@ const App = () => {
                                 {t.services.improvement.desc}
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Hub & Apps Section - Moved Here */}
+            <section className="py-16 md:py-20 px-6 relative overflow-hidden bg-black/60 text-center">
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6 block font-bold">{t.ecosystem.title}</span>
+                    <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-12 leading-tight whitespace-pre-line text-white/80">
+                        {t.ecosystem.subtitle}
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                        <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1877F2]/40 transition-all flex flex-col items-center gap-3">
+                            <Facebook className="text-white/20 group-hover:text-[#1877F2] transition-colors" size={32} />
+                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Facebook</span>
+                        </a>
+                        <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#ff0084]/40 transition-all flex flex-col items-center gap-3">
+                            <div className="flex gap-1 group-hover:scale-110 transition-transform">
+                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#0063dc]" />
+                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#ff0084]" />
+                            </div>
+                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Flickr Gallery</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF0000]/40 transition-all flex flex-col items-center gap-3">
+                            <Youtube className="text-white/20 group-hover:text-[#FF0000] transition-colors" size={32} />
+                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">YouTube</span>
+                        </a>
+                        <a href="https://aez-homesolution.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-[#10b981]/5 border border-[#10b981]/10 hover:border-[#10b981]/40 transition-all flex flex-col items-center gap-3">
+                            <Clock className="text-[#10b981]/40 group-hover:text-[#10b981] transition-colors" size={32} />
+                            <span className="text-[10px] uppercase font-black tracking-widest text-[#10b981]/60">Home Solution</span>
+                        </a>
+                    </div>
+
+                    <div className="mt-12">
+                        <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/5 hover:border-amber-500/20 text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-all">
+                            Digital Ecosystem by <span className="text-amber-500/60">aeZ-Hub</span>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -372,7 +423,14 @@ const App = () => {
                                     <span className="text-amber-400 text-[10px] font-black uppercase tracking-[0.4em] mb-2">{item.category}</span>
                                     <h3 className="text-2xl font-black mb-2">{lang === 'en' ? item.titleEn : item.titleKo}</h3>
                                     <p className="text-white/60 text-sm max-w-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity delay-100">
-                                        {lang === 'en' ? item.descEn : item.descKo}
+                                        {(() => {
+                                            const text = lang === 'en' ? item.descEn : item.descKo;
+                                            return text.split(/(\*[^*]+\*)/g).map((part, index) =>
+                                                part.startsWith('*') && part.endsWith('*')
+                                                    ? <strong key={index} className="text-white font-bold">{part.slice(1, -1)}</strong>
+                                                    : <span key={index}>{part}</span>
+                                            );
+                                        })()}
                                     </p>
                                 </div>
                             </motion.div>
@@ -382,41 +440,7 @@ const App = () => {
             </section>
 
             {/* Hub & Apps Section */}
-            <section className="py-16 md:py-20 px-6 relative overflow-hidden bg-black/60 text-center">
-                <div className="max-w-6xl mx-auto relative z-10">
-                    <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6 block font-bold">{t.ecosystem.title}</span>
-                    <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-12 leading-tight whitespace-pre-line text-white/80">
-                        {t.ecosystem.subtitle}
-                    </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                        <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1877F2]/40 transition-all flex flex-col items-center gap-3">
-                            <Facebook className="text-white/20 group-hover:text-[#1877F2] transition-colors" size={32} />
-                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Facebook</span>
-                        </a>
-                        <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#ff0084]/40 transition-all flex flex-col items-center gap-3">
-                            <div className="flex gap-1 group-hover:scale-110 transition-transform">
-                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#0063dc]" />
-                                <span className="w-4 h-4 rounded-full bg-white/20 group-hover:bg-[#ff0084]" />
-                            </div>
-                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">Flickr Gallery</span>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF0000]/40 transition-all flex flex-col items-center gap-3">
-                            <Youtube className="text-white/20 group-hover:text-[#FF0000] transition-colors" size={32} />
-                            <span className="text-[10px] uppercase font-black tracking-widest text-white/40">YouTube</span>
-                        </a>
-                        <a href="https://aez-homesolution.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-[#10b981]/5 border border-[#10b981]/10 hover:border-[#10b981]/40 transition-all flex flex-col items-center gap-3">
-                            <Hammer className="text-[#10b981]/40 group-hover:text-[#10b981] transition-colors" size={32} />
-                            <span className="text-[10px] uppercase font-black tracking-widest text-[#10b981]/60">Home Solution</span>
-                        </a>
-                    </div>
 
-                    <div className="mt-12">
-                        <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/5 hover:border-amber-500/20 text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-all">
-                            Digital Ecosystem by <span className="text-amber-500/60">aeZ-Hub</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
 
             {/* Contact Form & Footer */}
             <section id="contact" className="py-16 md:py-20 px-6 bg-[#050505]">
