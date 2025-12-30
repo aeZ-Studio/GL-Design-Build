@@ -545,7 +545,7 @@ const App = () => {
                                     </div>
                                 </a>
                             </div>
-                            <p className="text-xs font-bold tracking-[0.4em] text-white/10 uppercase">© 2025 GL Design+Build.</p>
+                            <p className="text-xs font-bold tracking-[0.4em] text-amber-500 uppercase">© 2025 GL Design+Build.</p>
                         </div>
                     </div>
                 </div>
@@ -589,8 +589,8 @@ const App = () => {
 
                                 {/* Staging Disclaimer */}
                                 {selectedProject.isStaging && (currentImgIndex === 0 || currentImgIndex === 1) && (
-                                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 w-[85%] max-w-sm">
-                                        <div className="px-4 py-2.5 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 text-[8px] md:text-[10px] font-medium text-white/60 tracking-tight italic text-center leading-snug">
+                                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 w-auto max-w-[90%]">
+                                        <div className="px-3 py-1.5 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5 text-[7px] md:text-[9px] font-medium text-white/40 tracking-tight italic text-center leading-tight">
                                             "These are photos of the actual construction site, and after completion, some decorative items were added using AI."
                                         </div>
                                     </div>
