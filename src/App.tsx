@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     Menu, X, Globe, Droplets, Home,
     MessageCircle, Youtube, Facebook,
-    Utensils, Mail, MapPin, Send, Hammer
+    Utensils, Mail, MapPin, Send, Hammer,
+    ChevronLeft, ChevronRight, Maximize2
 } from 'lucide-react';
 import { translations, TranslationContent } from './i18n/translations';
 import { portfolioData } from './data/portfolio';
@@ -18,6 +19,26 @@ const App = () => {
         name: '', email: '', phone: '', address: '', message: ''
     });
     const [submitting, setSubmitting] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<typeof portfolioData[0] | null>(null);
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+    const projectImages = selectedProject ? [selectedProject.image, ...(selectedProject.additionalImages || [])] : [];
+
+    const nextImage = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setCurrentImgIndex((prev) => (prev + 1) % projectImages.length);
+    };
+
+    const prevImage = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setCurrentImgIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
+    };
+
+    // Lock scroll when modal is open
+    useEffect(() => {
+        if (selectedProject) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'unset';
+    }, [selectedProject]);
 
     const filteredPortfolio = filter === 'all'
         ? portfolioData
@@ -62,7 +83,7 @@ const App = () => {
                         <img src="/logo.png" alt="GL Design+Build" className="h-10 w-auto" />
                         <div className="flex flex-col">
                             <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
-                            <span className="text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1">{t.motto}</span>
+                            <span className="text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1 whitespace-nowrap">{t.motto}</span>
                         </div>
                     </div>
 
@@ -82,10 +103,46 @@ const App = () => {
                         </a>
                     </div>
 
-                    <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                        {mobileMenuOpen ? <X /> : <Menu />}
+                    <button
+                        className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
                 </div>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {mobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="md:hidden bg-[#0a0a0a] border-b border-white/10 overflow-hidden"
+                        >
+                            <div className="flex flex-col p-6 gap-6">
+                                <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.services}</a>
+                                <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.portfolio}</a>
+                                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.about}</a>
+                                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                                    <button
+                                        onClick={() => {
+                                            setLang(lang === 'en' ? 'ko' : 'en');
+                                            setMobileMenuOpen(false);
+                                        }}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-white/60"
+                                    >
+                                        <Globe size={18} />
+                                        <span className="text-sm font-bold uppercase">{lang === 'en' ? '한국어' : 'English'}</span>
+                                    </button>
+                                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="bg-amber-500 text-black px-6 py-2.5 rounded-full font-black text-sm">
+                                        {t.nav.contact}
+                                    </a>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
 
             {/* Hero Section */}
@@ -144,7 +201,7 @@ const App = () => {
             </section>
 
             {/* Philosophy Section */}
-            <section id="about" className="py-24 px-6 relative bg-[#0a0a0a]/50">
+            <section id="about" className="py-16 md:py-20 px-6 relative bg-[#0a0a0a]/50">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div className="space-y-6">
@@ -191,7 +248,7 @@ const App = () => {
             </section>
 
             {/* Services Section */}
-            <section id="services" className="py-24 px-6 bg-[#0f0f0f]/80">
+            <section id="services" className="py-16 md:py-20 px-6 bg-[#0f0f0f]/80">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                         <div className="space-y-4">
@@ -244,7 +301,7 @@ const App = () => {
             </section>
 
             {/* Portfolio Section */}
-            <section id="portfolio" className="py-24 px-6">
+            <section id="portfolio" className="py-16 md:py-20 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                         <div className="space-y-4">
@@ -267,19 +324,33 @@ const App = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {filteredPortfolio.map((item) => (
-                            <div key={item.id} className="group relative aspect-[16/10] bg-white/5 rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-700 hover:border-amber-500/30">
+                            <motion.div
+                                key={item.id}
+                                layoutId={`project-${item.id}`}
+                                onClick={() => {
+                                    setSelectedProject(item);
+                                    setCurrentImgIndex(0);
+                                }}
+                                className="group relative aspect-[16/10] bg-white/5 rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-700 hover:border-amber-500/30 cursor-pointer"
+                            >
                                 <img
                                     src={`/Project/${item.image}`}
                                     alt={item.titleEn}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 />
-                                {item.isTransformation && (
-                                    <div className="absolute top-6 left-6 z-20">
+                                <div className="absolute top-6 left-6 z-20 flex flex-wrap gap-2">
+                                    {item.isTransformation && (
                                         <div className="bg-amber-500 text-black text-[10px] font-black px-3 py-1 rounded-full shadow-xl shadow-amber-500/20 uppercase tracking-tighter">
                                             Before & After
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                    {item.additionalImages && (
+                                        <div className="bg-white/10 backdrop-blur-md text-white text-[10px] font-black px-3 py-1 rounded-full border border-white/10 uppercase tracking-tighter flex items-center gap-1.5">
+                                            <Maximize2 size={10} />
+                                            +{item.additionalImages.length} Photos
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                                 <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                     <span className="text-amber-400 text-[10px] font-black uppercase tracking-[0.4em] mb-2">{item.category}</span>
@@ -288,14 +359,14 @@ const App = () => {
                                         {lang === 'en' ? item.descEn : item.descKo}
                                     </p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Hub & Apps Section */}
-            <section className="py-24 px-6 relative overflow-hidden bg-black/60 text-center">
+            <section className="py-16 md:py-20 px-6 relative overflow-hidden bg-black/60 text-center">
                 <div className="max-w-6xl mx-auto relative z-10">
                     <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-6 block font-bold">{t.ecosystem.title}</span>
                     <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-12 leading-tight whitespace-pre-line text-white/80">
@@ -332,7 +403,7 @@ const App = () => {
             </section>
 
             {/* Contact Form & Footer */}
-            <section id="contact" className="py-24 px-6 bg-[#050505]">
+            <section id="contact" className="py-16 md:py-20 px-6 bg-[#050505]">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
                         {/* Contact Info */}
@@ -446,7 +517,7 @@ const App = () => {
                                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                                     <span className="text-[9px] font-black text-amber-500 uppercase tracking-widest">{t.license}</span>
                                 </div>
-                                <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase">{t.motto}</p>
+                                <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
                             </div>
                             <div className="flex gap-8">
                                 <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform"><Facebook size={20} /></a>
@@ -463,6 +534,108 @@ const App = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Lightbox / Detail View */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/95 backdrop-blur-xl"
+                        onClick={() => setSelectedProject(null)}
+                    >
+                        <button
+                            className="absolute top-8 right-8 z-[110] p-4 bg-white/5 hover:bg-white/10 rounded-full transition-colors text-white/60 hover:text-white"
+                            onClick={() => setSelectedProject(null)}
+                        >
+                            <X size={24} />
+                        </button>
+
+                        <div
+                            className="relative w-full max-w-6xl aspect-[16/10] bg-white/5 rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Image Container */}
+                            <div className="relative flex-grow bg-black flex items-center justify-center group/nav overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.img
+                                        key={projectImages[currentImgIndex]}
+                                        initial={{ opacity: 0, scale: 1.1 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.4 }}
+                                        src={`/Project/${projectImages[currentImgIndex]}`}
+                                        alt={selectedProject.titleEn}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </AnimatePresence>
+
+                                {/* Staging Disclaimer */}
+                                {selectedProject.isStaging && (currentImgIndex === 0 || currentImgIndex === 1) && (
+                                    <div className="absolute bottom-6 left-6 z-20 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full border border-white/5 text-[9px] font-bold text-white/60 tracking-tighter italic">
+                                        소품만 AI가 배치하는 것을 도와주었습니다.
+                                    </div>
+                                )}
+
+                                {/* Navigation Arrows */}
+                                {projectImages.length > 1 && (
+                                    <>
+                                        <button
+                                            onClick={prevImage}
+                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110 opacity-0 group-hover/nav:opacity-100"
+                                        >
+                                            <ChevronLeft size={24} />
+                                        </button>
+                                        <button
+                                            onClick={nextImage}
+                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110 opacity-0 group-hover/nav:opacity-100"
+                                        >
+                                            <ChevronRight size={24} />
+                                        </button>
+                                    </>
+                                )}
+
+                                {/* Pagination Dots */}
+                                <div className="absolute bottom-6 right-0 left-0 flex justify-center gap-2 z-20">
+                                    {projectImages.map((_, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`h-1 rounded-full transition-all duration-300 ${idx === currentImgIndex ? 'w-8 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]' : 'w-2 bg-white/20'}`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Info Container */}
+                            <div className="w-full md:w-80 p-8 md:p-12 flex flex-col justify-center bg-[#0a0a0a] border-l border-white/5">
+                                <div className="space-y-6">
+                                    <div>
+                                        <span className="text-amber-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
+                                            {selectedProject.category}
+                                        </span>
+                                        <h2 className="text-3xl font-black tracking-tight leading-tight mb-4">
+                                            {lang === 'en' ? selectedProject.titleEn : selectedProject.titleKo}
+                                        </h2>
+                                        <div className="w-12 h-1 bg-amber-500/30 rounded-full" />
+                                    </div>
+                                    <p className="text-white/50 text-base leading-relaxed break-keep font-medium">
+                                        {lang === 'en' ? selectedProject.descEn : selectedProject.descKo}
+                                    </p>
+                                    <div className="pt-8">
+                                        <a href="#contact" onClick={() => setSelectedProject(null)} className="w-full bg-amber-500 hover:bg-amber-600 text-black px-6 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 group">
+                                            {t.nav.contact}
+                                            <motion.div animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+                                                <ChevronRight size={18} />
+                                            </motion.div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
