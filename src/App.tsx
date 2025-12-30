@@ -83,7 +83,7 @@ const App = () => {
                         <img src="/logo.png" alt="GL Design+Build" className="h-10 w-auto" />
                         <div className="flex flex-col">
                             <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
-                            <span className="text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1 whitespace-nowrap">{t.motto}</span>
+                            <span className="text-[7px] min-[375px]:text-xs font-bold tracking-[0.1em] min-[375px]:tracking-[0.2em] text-white/40 uppercase mt-1 whitespace-nowrap">{t.motto}</span>
                         </div>
                     </div>
 
@@ -235,12 +235,23 @@ const App = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="aspect-[3/4] rounded-3xl overflow-hidden mt-12 bg-white/5 border border-white/5">
-                                <img src="/Project/kitchen-3.jpg" alt="Worksite Process" className="w-full h-full object-cover opacity-60" />
-                            </div>
-                            <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/5">
-                                <img src="/Project/bath-3.jpg" alt="Direct Craftsmanship" className="w-full h-full object-cover opacity-60" />
+                        <div className="relative lg:mt-0 mt-12">
+                            <div className="aspect-video md:aspect-[4/3] lg:aspect-square rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 shadow-2xl relative group">
+                                <video
+                                    src="/Project/brand-video.mp4"
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
+                                <div className="absolute bottom-6 left-6">
+                                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                                        <span className="text-[9px] min-[375px]:text-[10px] font-bold uppercase tracking-wider text-white/80">Process & Quality</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -517,7 +528,7 @@ const App = () => {
                                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                                     <span className="text-[9px] font-black text-amber-500 uppercase tracking-widest">{t.license}</span>
                                 </div>
-                                <p className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
+                                <p className="text-white/40 text-[8px] min-[375px]:text-[10px] font-bold tracking-[0.3em] min-[375px]:tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
                             </div>
                             <div className="flex gap-8">
                                 <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform"><Facebook size={20} /></a>
