@@ -201,7 +201,7 @@ const App = () => {
             </section>
 
             {/* Philosophy Section */}
-            <section id="about" className="py-16 md:py-20 px-6 relative bg-[#0a0a0a]/50">
+            <section id="about" className="py-12 md:py-16 px-6 relative bg-[#0a0a0a]/50">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div className="space-y-6">
@@ -259,7 +259,7 @@ const App = () => {
             </section>
 
             {/* Services Section */}
-            <section id="services" className="py-16 md:py-20 px-6 bg-[#0f0f0f]/80">
+            <section id="services" className="py-12 md:py-16 px-6 bg-[#0f0f0f]/80">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                         <div className="space-y-4">
@@ -312,7 +312,7 @@ const App = () => {
             </section>
 
             {/* Portfolio Section */}
-            <section id="portfolio" className="py-16 md:py-20 px-6">
+            <section id="portfolio" className="py-12 md:py-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                         <div className="space-y-4">
@@ -320,7 +320,7 @@ const App = () => {
                             <h2 className="text-4xl md:text-6xl font-black tracking-tighter">{t.nav.portfolio}</h2>
                         </div>
                         <div className="flex p-1.5 bg-white/5 rounded-full border border-white/10 overflow-x-auto scrollbar-hide">
-                            <div className="flex gap-1 px-1">
+                            <div className="flex gap-1 px-4 md:px-1">
                                 {(['all', 'kitchen', 'bath', 'improvement'] as const).map((cat) => (
                                     <button
                                         key={cat}
@@ -354,16 +354,16 @@ const App = () => {
                                     alt={item.titleEn}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 />
-                                <div className="absolute top-6 left-6 z-20 flex flex-wrap gap-2">
+                                <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2">
                                     {item.isTransformation && (
                                         <div className="bg-amber-500 text-black text-[10px] font-black px-3 py-1 rounded-full shadow-xl shadow-amber-500/20 uppercase tracking-tighter">
-                                            Before & After
+                                            B&A
                                         </div>
                                     )}
                                     {item.additionalImages && (
                                         <div className="bg-white/10 backdrop-blur-md text-white text-[10px] font-black px-3 py-1 rounded-full border border-white/10 uppercase tracking-tighter flex items-center gap-1.5">
                                             <Maximize2 size={10} />
-                                            +{item.additionalImages.length} Photos
+                                            {item.additionalImages.length + 1} Photos
                                         </div>
                                     )}
                                 </div>

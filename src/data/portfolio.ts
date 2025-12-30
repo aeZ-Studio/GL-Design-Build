@@ -148,7 +148,7 @@ export const portfolioData: PortfolioItem[] = [
         titleEn: "Partial Home Transformation",
         titleKo: "부분 공간 변신",
         descEn: "Refreshing specific interior areas.",
-        descKo: "단조로운 공간에 새로운 생명력을 불어넣는 부분 시공입니다.",
+        descKo: "부분적인 공간의 변화만으로도 만족도 높은 공간을 경험할 수 있습니다.",
         image: "home-6.jpg",
         additionalImages: ["home-15.jpg"],
         isTransformation: true,
