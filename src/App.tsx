@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     Menu, X, Globe, Droplets, Home,
-    MessageCircle, Youtube, Facebook, LayoutGrid, ArrowRight,
-    Utensils, Image, Mail, Phone, MapPin, Send, Hammer
+    MessageCircle, Youtube, Facebook,
+    Utensils, Mail, MapPin, Send, Hammer
 } from 'lucide-react';
 import { translations, TranslationContent } from './i18n/translations';
 import { portfolioData } from './data/portfolio';
@@ -12,13 +12,12 @@ const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
     const [filter, setFilter] = useState<'all' | 'kitchen' | 'bath' | 'improvement'>('all');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const t: TranslationContent = translations[lang];
+    const t: TranslationContent = (translations as any)[lang];
 
     const [formState, setFormState] = useState({
         name: '', email: '', phone: '', address: '', message: ''
     });
     const [submitting, setSubmitting] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
 
     const filteredPortfolio = filter === 'all'
         ? portfolioData
@@ -39,7 +38,6 @@ const App = () => {
             });
 
             if (response.ok) {
-                setSubmitted(true);
                 setFormState({ name: '', email: '', phone: '', address: '', message: '' });
                 alert(lang === 'ko' ? '문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!' : 'Your request has been sent! We will contact you soon.');
             } else {
@@ -60,9 +58,12 @@ const App = () => {
             {/* Navigation */}
             <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex flex-col">
-                        <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
-                        <span className="text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1">{t.motto}</span>
+                    <div className="flex items-center gap-4">
+                        <img src="/logo.png" alt="GL Design+Build" className="h-10 w-auto" />
+                        <div className="flex flex-col">
+                            <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
+                            <span className="text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1">{t.motto}</span>
+                        </div>
                     </div>
 
                     <div className="hidden md:flex items-center gap-10">
@@ -90,12 +91,12 @@ const App = () => {
             {/* Hero Section */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0a0a0a] z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-[#0a0a0a]/80 z-10" />
                     <img
                         src="/Project/hero.jpg"
                         alt="GL Design+Build Hero"
                         className="w-full h-full object-cover scale-105 transition-transform duration-[10s]"
-                        onError={(e) => {
+                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop';
                         }}
                     />
@@ -272,6 +273,13 @@ const App = () => {
                                     alt={item.titleEn}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 />
+                                {item.isTransformation && (
+                                    <div className="absolute top-6 left-6 z-20">
+                                        <div className="bg-amber-500 text-black text-[10px] font-black px-3 py-1 rounded-full shadow-xl shadow-amber-500/20 uppercase tracking-tighter">
+                                            Before & After
+                                        </div>
+                                    </div>
+                                )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                                 <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                     <span className="text-amber-400 text-[10px] font-black uppercase tracking-[0.4em] mb-2">{item.category}</span>
