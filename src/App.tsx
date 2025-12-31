@@ -56,10 +56,13 @@ const App = () => {
         try {
             const response = await fetch("https://formspree.io/f/xvgzbbwa", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
                 body: JSON.stringify({
                     ...formState,
-                    to: "GLdesignBuild703@gmail.com"
+                    subject: `New Inquiry from ${formState.name} (GL Website)`
                 }),
             });
 
