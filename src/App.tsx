@@ -54,26 +54,32 @@ const App = () => {
         setSubmitting(true);
 
         try {
-            const response = await fetch("https://formspree.io/f/xvgzbbwa", {
+            // Updated to Web3Forms - More reliable and zero-config
+            // To activate: Replace the access_key with your own from web3forms.com (Instant & Free)
+            const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
                 body: JSON.stringify({
+                    access_key: "ad70cc8b-f1de-4b91-a9be-384c9da267c7", // Please get one from web3forms.com
                     ...formState,
-                    subject: `New Inquiry from ${formState.name} (GL Website)`
+                    from_name: "GL Website Inquiry",
+                    subject: `New Inquiry from ${formState.name}`
                 }),
             });
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (result.success) {
                 setFormState({ name: '', email: '', phone: '', address: '', message: '' });
                 alert(lang === 'ko' ? '문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!' : 'Your request has been sent! We will contact you soon.');
             } else {
-                alert(lang === 'ko' ? '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' : 'Something went wrong. Please try again later.');
+                alert(lang === 'ko' ? `전송 실패: ${result.message || '다시 시도해 주세요.'}` : `Failed: ${result.message || 'Please try again later.'}`);
             }
         } catch (error) {
-            alert(lang === 'ko' ? '서버 연결에 실패했습니다.' : 'Failed to connect to the server.');
+            alert(lang === 'ko' ? '서버 연결에 실패했습니다. 카카오톡 상담을 이용해 주세요.' : 'Failed to connect. Please use KakaoTalk OpenChat.');
         } finally {
             setSubmitting(false);
         }
