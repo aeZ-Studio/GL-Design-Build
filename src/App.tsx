@@ -578,7 +578,12 @@ const App = () => {
                                     </div>
                                 </a>
                             </div>
-                            <p className="text-xs font-bold tracking-[0.4em] text-amber-500 uppercase">© 2025 GL Design+Build.</p>
+                            <div className="flex flex-col items-center gap-4">
+                                <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-white/40 hover:text-white hover:bg-white/10 transition-all uppercase tracking-[0.2em] mb-2">
+                                    {lang === 'ko' ? 'aeZ Studio 다른앱 보러가기' : 'View more from aeZ Studio'}
+                                </a>
+                                <p className="text-xs font-bold tracking-[0.4em] text-white/20 uppercase">© 2025 ALL RIGHTS RESERVED. <span className="text-white/40">aeZ Studio</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
