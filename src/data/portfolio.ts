@@ -47,7 +47,7 @@ export const portfolioData: PortfolioItem[] = [
         id: 110,
         category: 'kitchen',
         titleEn: "Modern Open-Concept Masterpiece",
-        titleKo: "GL 최신 트렌드: 완전 개방형 오픈 주방",
+        titleKo: "GL 최신 트렌드: 오픈 패밀리 주방",
         descEn: "A complete transformation involving wall removal to create a breathtaking open-plan living experience. The pinnacle of GL's recent trends.",
         descKo: "벽 철거라는 큰 변화를 통해 실현한 최신 오픈주방. 공간의 한계를 넘어서는 GL의 최신 트렌드와 디자인 기술력이 집약된 작품.",
         image: "Kitchen-10.jpg",
