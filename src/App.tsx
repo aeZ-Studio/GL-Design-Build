@@ -561,7 +561,7 @@ const App = () => {
                     <div className="mt-20 pt-12 border-t border-white/5">
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                             <div className="flex flex-col items-center lg:items-start">
-                                <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-6" />
+                                <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-6 brightness-110 mix-blend-screen opacity-80" />
                                 <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 mb-6 group hover:bg-amber-500/20 transition-all duration-300">
                                     <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] animate-pulse" />
                                     <span className="text-xs md:text-sm font-black text-amber-500 uppercase tracking-wider">{t.license}</span>
@@ -579,8 +579,11 @@ const App = () => {
                                 </a>
                             </div>
                             <div className="flex flex-col items-center gap-2">
-                                <p className="text-[10px] font-bold tracking-[0.4em] text-white/20 uppercase mb-2">© 2025 ALL RIGHTS RESERVED. <span className="text-white/40">aeZ Studio</span></p>
-                                <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block text-[9px] font-black text-white/10 hover:text-amber-500 transition-colors uppercase tracking-[0.2em] border border-white/5 rounded-full px-3 py-1">
+                                <p className="text-[10px] font-medium text-white/30">
+                                    © 2025 All Rights Reserved. <span className="font-bold">aeZ Studio</span>
+                                </p>
+                                <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer"
+                                    className="inline-block text-[9px] font-bold text-white/20 hover:text-amber-500 transition-colors border border-white/5 rounded-full px-3 py-1">
                                     aeZ Studio Hub
                                 </a>
                             </div>
