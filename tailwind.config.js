@@ -7,7 +7,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                display: ['Outfit', 'sans-serif'],
+                display: ['Outfit', 'Noto Sans KR', 'sans-serif'],
+                sans: ['Outfit', 'Noto Sans KR', 'sans-serif'],
                 serif: ['Noto Serif KR', 'serif'],
             },
         },

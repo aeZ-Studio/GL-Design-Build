@@ -86,7 +86,7 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a]/95 text-white font-['Outfit'] antialiased">
+        <div className="min-h-screen bg-[#0a0a0a]/95 text-white font-['Outfit',_'Noto_Sans_KR',_sans-serif] antialiased">
             {/* Background Overlay to match aeZ-Hub style */}
             <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(245,158,11,0.05),_transparent_50%)] pointer-events-none" />
 
@@ -97,7 +97,7 @@ const App = () => {
                         <img src="/logo.png" alt="GL Design+Build" className="h-10 w-auto" />
                         <div className="flex flex-col">
                             <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
-                            <span className="text-[7px] min-[375px]:text-xs font-bold tracking-[0.1em] min-[375px]:tracking-[0.2em] text-white/40 uppercase mt-1 whitespace-nowrap">{t.motto}</span>
+                            <span className="text-[7px] min-[375px]:text-xs font-bold tracking-[0.1em] min-[375px]:tracking-[0.2em] text-white/40 uppercase mt-1 break-keep">{t.motto}</span>
                         </div>
                     </div>
 
@@ -185,7 +185,7 @@ const App = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8"
+                        className={`text-4xl min-[375px]:text-5xl md:text-8xl font-black tracking-tighter mb-8 break-keep ${lang === 'ko' ? 'leading-[1.15]' : 'leading-[0.9]'}`}
                     >
                         {t.hero.title}
                     </motion.h1>
@@ -193,7 +193,7 @@ const App = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        className="text-lg md:text-2xl text-white/60 max-w-2xl mx-auto font-medium mb-12"
+                        className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto font-medium mb-12 break-keep leading-relaxed"
                     >
                         {t.hero.subtitle}
                     </motion.p>
@@ -204,11 +204,11 @@ const App = () => {
                         className="flex flex-col md:flex-row items-center justify-center gap-4"
                     >
                         <a href="#contact" className="w-full md:w-auto bg-amber-500 text-black px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2">
-                            Request Consultation
+                            {t.hero.cta}
                         </a>
                         <a href="https://open.kakao.com/o/gQlXUX8h" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-[#FEE500] text-[#3c1e1e] px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-xl shadow-yellow-500/10 flex items-center justify-center gap-2">
                             <MessageCircle size={20} />
-                            KakaoTalk
+                            {t.hero.kakao}
                         </a>
                     </motion.div>
                 </div>
