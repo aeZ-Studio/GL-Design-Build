@@ -359,7 +359,7 @@ const App = () => {
                         </a>
                         <a href="https://aez-homesolution.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-[#10b981]/5 border border-[#10b981]/10 hover:border-[#10b981]/40 transition-all flex flex-col items-center gap-3">
                             <Clock className="text-[#10b981]/40 group-hover:text-[#10b981] transition-colors" size={32} />
-                            <span className="text-[10px] uppercase font-black tracking-widest text-[#10b981]/60">Home Solution</span>
+                            <span className="text-[10px] uppercase font-black tracking-widest text-[#10b981]/60">aeZ-HomeSolution</span>
                         </a>
                     </div>
 
