@@ -185,7 +185,7 @@ const App = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className={`text-4xl min-[375px]:text-5xl md:text-8xl font-black tracking-tighter mb-8 break-keep ${lang === 'ko' ? 'leading-[1.15]' : 'leading-[0.9]'}`}
+                        className={`text-4xl min-[375px]:text-5xl md:text-8xl font-black tracking-tighter mb-8 break-keep whitespace-pre-line ${lang === 'ko' ? 'leading-[1.15]' : 'leading-[0.9]'}`}
                     >
                         {t.hero.title}
                     </motion.h1>

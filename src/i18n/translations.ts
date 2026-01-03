@@ -114,7 +114,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             subtitle: "수십 년의 시공 노하우와\n주거 편의 시스템의 만남"
         },
         hero: {
-            title: "진심을 짓는 프리미엄 건축",
+            title: "진심을 짓는\n프리미엄 건축",
             subtitle: "GL Design+Build는 당신의 삶의 가치를 높이는 공간을 설계합니다.",
             cta: "무료 상담 신청",
             kakao: "카카오톡 상담"
