@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Menu, X, Globe, Droplets, Home,
+    Globe, Droplets, Home,
     MessageCircle, Youtube, Facebook,
     Utensils, Mail, MapPin, Send, Hammer, Clock,
     ChevronLeft, ChevronRight, Maximize2
@@ -12,7 +12,7 @@ import { portfolioData } from './data/portfolio';
 const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
     const [filter, setFilter] = useState<'all' | 'kitchen' | 'bath' | 'improvement'>('all');
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
     const t: TranslationContent = (translations as any)[lang];
 
     const [formState, setFormState] = useState({
@@ -101,62 +101,14 @@ const App = () => {
                         </div>
                     </div>
 
-                    <div className="hidden md:flex items-center gap-10">
-                        <a href="#services" className="text-sm font-bold text-white/60 hover:text-white transition-colors">{t.nav.services}</a>
-                        <a href="#portfolio" className="text-sm font-bold text-white/60 hover:text-white transition-colors">{t.nav.portfolio}</a>
-                        <a href="#about" className="text-sm font-bold text-white/60 hover:text-white transition-colors">{t.nav.about}</a>
-                        <button
-                            onClick={() => setLang(lang === 'en' ? 'ko' : 'en')}
-                            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-all text-white/60"
-                        >
-                            <Globe size={16} />
-                            <span className="text-xs font-bold uppercase">{lang === 'en' ? '한국어' : 'English'}</span>
-                        </button>
-                        <a href="#contact" className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2.5 rounded-full font-black text-sm transition-all shadow-lg shadow-amber-500/20">
-                            {t.nav.contact}
-                        </a>
-                    </div>
-
                     <button
-                        className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        onClick={() => setLang(lang === 'en' ? 'ko' : 'en')}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-all text-white/60"
                     >
-                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        <Globe size={16} />
+                        <span className="text-xs font-bold uppercase">{lang === 'en' ? '한국어' : 'English'}</span>
                     </button>
                 </div>
-
-                {/* Mobile Menu Overlay */}
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden bg-[#0a0a0a] border-b border-white/10 overflow-hidden"
-                        >
-                            <div className="flex flex-col p-6 gap-6">
-                                <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.services}</a>
-                                <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.portfolio}</a>
-                                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-bold text-white/60 hover:text-white transition-colors">{t.nav.about}</a>
-                                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                                    <button
-                                        onClick={() => {
-                                            setLang(lang === 'en' ? 'ko' : 'en');
-                                            setMobileMenuOpen(false);
-                                        }}
-                                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-white/60"
-                                    >
-                                        <Globe size={18} />
-                                        <span className="text-sm font-bold uppercase">{lang === 'en' ? '한국어' : 'English'}</span>
-                                    </button>
-                                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="bg-amber-500 text-black px-6 py-2.5 rounded-full font-black text-sm">
-                                        {t.nav.contact}
-                                    </a>
-                                </div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </nav>
 
             {/* Hero Section */}
@@ -579,12 +531,18 @@ const App = () => {
                                 </a>
                             </div>
                             <div className="flex flex-col items-center gap-2">
-                                <p className="text-[10px] font-medium text-white/30">
-                                    © 2025 All Rights Reserved. <span className="font-bold">aeZ Studio</span>
+                                <p className="text-[11px] text-zinc-500 mb-2">
+                                    © 2026 All Rights Reserved. <span className="font-bold text-zinc-400">aeZ Studio</span>
                                 </p>
-                                <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer"
-                                    className="inline-block text-[9px] font-bold text-white/20 hover:text-amber-500 transition-colors border border-white/5 rounded-full px-3 py-1">
-                                    aeZ Studio Hub
+                                <a
+                                    href="https://aez-hub.vercel.app/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block px-6 py-2 rounded-full border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all"
+                                >
+                                    <span className="text-xs font-medium text-zinc-400 hover:text-zinc-300">
+                                        aeZ Studio Hub
+                                    </span>
                                 </a>
                             </div>
                         </div>
