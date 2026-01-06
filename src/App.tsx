@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Globe, Droplets, Home,
     MessageCircle, Youtube, Facebook,
-    Utensils, Mail, MapPin, Send, Hammer, Clock,
-    ChevronLeft, ChevronRight, Maximize2
+    Utensils, Mail, MapPin, Send, Clock,
+    ChevronLeft, ChevronRight, Maximize2, X
 } from 'lucide-react';
 import { translations, TranslationContent } from './i18n/translations';
 import { portfolioData } from './data/portfolio';
@@ -34,10 +34,39 @@ const App = () => {
         setCurrentImgIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
     };
 
-    // Lock scroll when modal is open
+    // Unified Modal Close Logic with History support
+    const closeModal = () => {
+        if (selectedProject) {
+            setSelectedProject(null);
+            if (window.history.state?.modal) {
+                window.history.back();
+            }
+        }
+    };
+
+    // Handle back button and scroll lock
     useEffect(() => {
-        if (selectedProject) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = 'unset';
+        const handlePopState = () => {
+            if (selectedProject) {
+                setSelectedProject(null); // Just close the state, we are already back in history
+            }
+        };
+
+        if (selectedProject) {
+            document.body.style.overflow = 'hidden';
+            // Push state only if it's not already there (to avoid multiple states on rapid clicks)
+            if (!window.history.state?.modal) {
+                window.history.pushState({ modal: true }, '');
+            }
+            window.addEventListener('popstate', handlePopState);
+        } else {
+            document.body.style.overflow = 'unset';
+            // Cleanup: If modal is closed manually and hash/state remains, we'd handle it.
+        }
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
     }, [selectedProject]);
 
     const filteredPortfolio = filter === 'all'
@@ -311,15 +340,11 @@ const App = () => {
                         </a>
                         <a href="https://aez-homesolution.vercel.app" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-[#10b981]/5 border border-[#10b981]/10 hover:border-[#10b981]/40 transition-all flex flex-col items-center gap-3">
                             <Clock className="text-[#10b981]/40 group-hover:text-[#10b981] transition-colors" size={32} />
-                            <span className="text-[10px] uppercase font-black tracking-widest text-[#10b981]/60">aeZ-HomeSolution</span>
+                            <span className="text-[10px] font-black tracking-widest text-[#10b981]/60">aeZ-HomeSolution</span>
                         </a>
                     </div>
 
-                    <div className="mt-12">
-                        <a href="https://aez-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/5 hover:border-amber-500/20 text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-all">
-                            Digital Ecosystem by <span className="text-amber-500/60">aeZ-Hub</span>
-                        </a>
-                    </div>
+
                 </div>
             </section>
 
@@ -341,9 +366,9 @@ const App = () => {
                                             }`}
                                     >
                                         {cat === 'all' ? (lang === 'ko' ? '전체' : 'All') :
-                                            cat === 'kitchen' ? (lang === 'ko' ? '키친' : 'Kitchen') :
-                                                cat === 'bath' ? (lang === 'ko' ? '바스' : 'Bath') :
-                                                    (lang === 'ko' ? '업그레이드' : 'Home Improvement')}
+                                            cat === 'kitchen' ? (lang === 'ko' ? '주방' : 'Kitchen') :
+                                                cat === 'bath' ? (lang === 'ko' ? '욕실' : 'Bath') :
+                                                    (lang === 'ko' ? '집수리' : 'Home Improvement')}
                                     </button>
                                 ))}
                             </div>
@@ -538,9 +563,9 @@ const App = () => {
                                     href="https://aez-hub.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block px-6 py-2 rounded-full border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all"
+                                    className="inline-block px-4 py-1 rounded-full border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all"
                                 >
-                                    <span className="text-xs font-medium text-zinc-400 hover:text-zinc-300">
+                                    <span className="text-[10px] font-medium text-zinc-400 hover:text-zinc-300 tracking-wide">
                                         aeZ Studio Hub
                                     </span>
                                 </a>
@@ -558,11 +583,11 @@ const App = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/95 backdrop-blur-xl"
-                        onClick={() => setSelectedProject(null)}
+                        onClick={closeModal}
                     >
                         <button
                             className="absolute top-4 right-4 md:top-8 md:right-8 z-[120] p-4 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-full transition-colors text-white/60 hover:text-white border border-white/10"
-                            onClick={() => setSelectedProject(null)}
+                            onClick={closeModal}
                         >
                             <X size={24} />
                         </button>
@@ -582,7 +607,8 @@ const App = () => {
                                         transition={{ duration: 0.4 }}
                                         src={`/Project/${projectImages[currentImgIndex]}`}
                                         alt={selectedProject.titleEn}
-                                        className="w-full h-full object-contain md:object-cover"
+                                        className="w-full h-full object-contain md:object-cover cursor-pointer"
+                                        onClick={nextImage}
                                     />
                                 </AnimatePresence>
 
@@ -600,27 +626,46 @@ const App = () => {
                                     <>
                                         <button
                                             onClick={prevImage}
-                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110 opacity-0 group-hover/nav:opacity-100"
+                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110"
                                         >
                                             <ChevronLeft size={24} />
                                         </button>
                                         <button
                                             onClick={nextImage}
-                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110 opacity-0 group-hover/nav:opacity-100"
+                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all transform hover:scale-110"
                                         >
                                             <ChevronRight size={24} />
                                         </button>
                                     </>
                                 )}
 
-                                {/* Pagination Dots */}
-                                <div className="absolute bottom-12 right-0 left-0 flex justify-center gap-2 z-20">
-                                    {projectImages.map((_, idx) => (
-                                        <div
-                                            key={idx}
-                                            className={`h-1 rounded-full transition-all duration-300 ${idx === currentImgIndex ? 'w-8 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]' : 'w-2 bg-white/20'}`}
-                                        />
-                                    ))}
+                                {/* Thumbnails & Pagination UI */}
+                                <div className="absolute bottom-4 md:bottom-8 right-0 left-0 flex flex-col items-center gap-3 md:gap-4 z-20">
+                                    {projectImages.length > 1 && (
+                                        <div className="flex gap-1 md:gap-2 p-1 md:p-2 bg-black/40 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/5 mx-auto overflow-x-auto max-w-[90vw] scrollbar-hide">
+                                            {projectImages.map((img, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setCurrentImgIndex(idx);
+                                                    }}
+                                                    className={`w-8 h-8 md:w-12 md:h-12 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${idx === currentImgIndex ? 'border-amber-500 scale-110' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-105'
+                                                        }`}
+                                                >
+                                                    <img src={`/Project/${img}`} className="w-full h-full object-cover" alt="thumbnail" />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <div className="flex justify-center gap-2">
+                                        {projectImages.map((_, idx) => (
+                                            <div
+                                                key={idx}
+                                                className={`h-1 rounded-full transition-all duration-300 ${idx === currentImgIndex ? 'w-8 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]' : 'w-2 bg-white/20'}`}
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
@@ -640,7 +685,7 @@ const App = () => {
                                         {lang === 'en' ? selectedProject.descEn : selectedProject.descKo}
                                     </p>
                                     <div className="pt-8">
-                                        <a href="#contact" onClick={() => setSelectedProject(null)} className="w-full bg-amber-500 hover:bg-amber-600 text-black px-6 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 group">
+                                        <a href="#contact" onClick={closeModal} className="w-full bg-amber-500 hover:bg-amber-600 text-black px-6 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 group">
                                             {t.nav.contact}
                                             <motion.div animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
                                                 <ChevronRight size={18} />

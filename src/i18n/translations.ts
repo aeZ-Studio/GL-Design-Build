@@ -56,7 +56,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         nav: {
             services: "Services",
             portfolio: "Portfolio",
-            about: "Philosophy",
+            about: "Our Thoughts",
             contact: "Contact"
         },
         ecosystem: {
@@ -70,10 +70,10 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             kakao: "KakaoTalk"
         },
         philosophy: {
-            title: "Our Philosophy",
-            p1: "Don't postpone your dream home for the sake of future resale. You deserve to experience a space designed for your comfort and style today. We create timeless elegance that enhances your daily living while ensuring lasting value for years to come.",
-            p2: "Unlike many sites that use stock photos or AI-generated images, we only showcase our own authentic work. These are real results from real job sites, showing the true process of transformation.",
-            p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube since 2007."
+            title: "Our Thoughts",
+            p1: "Don't postpone the joy you deserve today for the sake of future resale value. While you hesitate, that joy ends up being a gift for the next homeowner, not you. We work together to complete your [safe, organized, comfortable, and beautiful space]. Don't fill your precious home based solely on 'price comparisons'. The sincerity GL has built since 2007 and the priceless value of becoming your 'good neighbor'—even after delivering a safe and refined finish—is something that cannot be measured.",
+            p2: "Unlike many sites that use stock photos or AI-generated images, we only showcase our own authentic work through real project photos.",
+            p3: "Visit our Facebook and Flickr to see our extensive gallery of real project photos. We believe in the power of 'Before and After' photos to show the true quality of our direct craftsmanship. You can also view our history and videos on YouTube.",
         },
         services: {
             kitchen: {
@@ -106,7 +106,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         nav: {
             services: "서비스",
             portfolio: "포트폴리오",
-            about: "우리의 철학",
+            about: "우리의 생각",
             contact: "상담문의"
         },
         ecosystem: {
@@ -120,10 +120,10 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             kakao: "카카오톡 상담"
         },
         philosophy: {
-            title: "우리의 철학",
-            p1: "오직 미래의 가치만을 위해 리모델링을 미루지 마세요. 지금 이 순간, 당신의 삶에 품격을 더하는 변화를 먼저 누릴 자격이 있습니다. 10년 뒤에도 변치 않을 우아함으로 당신의 소중한 공간을 완성합니다.",
-            p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. 우리는 2007년부터 지금까지 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 기록만을 공개합니다.",
-            p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요 (Since 2007)."
+            title: "우리의 생각",
+            p1: "미래의 주택시장에서의 경쟁력은 물론이거니와, 지금 당신이 누려야 할 기쁨을 미루지 마세요. 고민하며 미루는 사이 그 기쁨은 당신이 아닌, 다음 집주인에게 돌아갑니다. 당신의 [안전하고 정돈된, 편안하고 아름다운 공간]을 위해 함께 완성해 갑니다. 단지 '가격 비교'만으로 당신의 소중한 공간을 채우려 하지 마세요. 2007년 부터 쌓여 온 GL의 진정성과 정돈되고 안전한 마감이후에도 '함께 하는 이웃'이 되는 것은, 그 어떤것으로도 가치를 매길 수 없습니다.",
+            p2: "웹사이트에서 흔히 보는 잡지 사진이나 인터넷 생성 이미지가 아닙니다. GL은 오직 우리가 직접 땀 흘리며 시공한 실제 현장의 실제 사진으로 보여드립니다.",
+            p3: "우리의 페이스북과 플리커에는 수많은 실제 공사진행 사진들이 담겨있습니다. 우리는 'Before and After' 사진이야말로 실력을 증명하는 진짜라고 믿습니다. 오랜 시간 쌓아온 GL의 역사를 현장 사진과 동영상으로 직접 확인해 보세요.",
         },
         services: {
             kitchen: {
