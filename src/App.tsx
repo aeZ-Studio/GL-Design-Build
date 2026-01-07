@@ -201,8 +201,8 @@ const App = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div className="space-y-6">
                             <span className="text-amber-500 text-xs font-black uppercase tracking-[0.3em]">{t.philosophy.title}</span>
-                            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-snug break-keep text-white/90">
-                                {t.philosophy.p1}
+                            <h2 className="text-xl md:text-2xl font-medium tracking-tight leading-relaxed break-keep text-white/95 font-['Stylish'] opacity-90 italic">
+                                "{t.philosophy.p1}"
                             </h2>
                             <p className="text-white/60 text-base md:text-lg leading-relaxed font-medium">
                                 {t.philosophy.p2}
@@ -556,18 +556,17 @@ const App = () => {
                                 </a>
                             </div>
                             <div className="flex flex-col items-center gap-2">
-                                <p className="text-[11px] text-zinc-500 mb-2">
-                                    © 2026 All Rights Reserved. <span className="font-bold text-zinc-400">aeZ Studio</span>
+                                <p className="text-[10px] text-zinc-500 mb-4 tracking-tight uppercase font-medium">
+                                    © 2026 All Rights Reserved. <span className="text-zinc-400 font-bold">aeZ Studio</span>
                                 </p>
                                 <a
                                     href="https://aez-hub.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block px-4 py-1 rounded-full border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all"
+                                    className="inline-flex items-center text-[10px] font-bold text-zinc-500 hover:text-amber-500 transition-colors gap-1.5 px-3 py-1.5 rounded-lg hover:bg-white/5 border border-white/5"
                                 >
-                                    <span className="text-[10px] font-medium text-zinc-400 hover:text-zinc-300 tracking-wide">
-                                        aeZ Studio Hub
-                                    </span>
+                                    <span>aeZ Studio Hub</span>
+                                    <ChevronRight size={10} />
                                 </a>
                             </div>
                         </div>
