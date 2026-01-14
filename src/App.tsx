@@ -13,6 +13,19 @@ const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
     const [filter, setFilter] = useState<'all' | 'kitchen' | 'bath' | 'improvement'>('all');
 
+    const handleHardRefresh = () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then((registrations) => {
+                for (const registration of registrations) {
+                    registration.unregister();
+                }
+                window.location.reload();
+            });
+        } else {
+            window.location.reload();
+        }
+    };
+
     const t: TranslationContent = (translations as any)[lang];
 
     const [formState, setFormState] = useState({
@@ -555,15 +568,35 @@ const App = () => {
                                     </div>
                                 </a>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                                <p className="text-[10px] text-zinc-500 mb-4 tracking-tight uppercase font-medium">
-                                    © 2026 All Rights Reserved. <span className="text-zinc-400 font-bold">aeZ Studio</span>
-                                </p>
+                            <div className="flex flex-col items-center gap-6 mt-12 lg:mt-0">
+                                {/* Refresh Button */}
+                                <button
+                                    onClick={handleHardRefresh}
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 text-blue-400 transition-all active:scale-95 group shadow-lg shadow-blue-500/5"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" className="group-hover:rotate-180 transition-transform duration-500"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+                                    <span className="text-[11px] font-black tracking-tight flex items-center gap-1.5 leading-none">
+                                        <svg viewBox="0 0 384 512" width="10" height="10" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-126.7-10.5-126.7-10.5h.1zM315.1 84.7c18.5-22.3 31.1-53.3 27.7-84.7-26.9 1.1-59.5 17.9-78.8 40.5-17.3 19.9-32.5 51.7-28.4 82.3 29.8 2.3 60.1-15.8 79.5-38.1z" /></svg>
+                                        새로운 기능 및 환경 업데이트
+                                    </span>
+                                </button>
+
+                                {/* Small Privacy & Copyright */}
+                                <div className="flex flex-col items-center gap-1 opacity-20">
+                                    <p className="text-[7px] font-thin text-white leading-none tracking-tighter uppercase">
+                                        Certified Private Analytics: 100% On-Device / No Cloud Sync.
+                                    </p>
+                                    <p className="text-[8px] text-white/60 mb-1 tracking-tight uppercase font-medium">
+                                        © 2026 All Rights Reserved. <span className="text-white font-bold">aeZ Studio</span>
+                                    </p>
+                                </div>
+
+                                {/* Studio Hub Link (Gray Capsule) */}
                                 <a
                                     href="https://aez-hub.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center text-[10px] font-bold text-zinc-500 hover:text-amber-500 transition-colors gap-1.5 px-3 py-1.5 rounded-lg hover:bg-white/5 border border-white/5"
+                                    className="inline-flex items-center text-[10px] font-black text-zinc-500 hover:text-amber-500 transition-colors gap-1.5 px-4 py-1.5 rounded-full hover:bg-white/5 border border-white/5 uppercase tracking-widest italic"
                                 >
                                     <span>aeZ Studio Hub</span>
                                     <ChevronRight size={10} />
