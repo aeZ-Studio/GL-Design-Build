@@ -9,6 +9,13 @@ import {
 import { translations, TranslationContent } from './i18n/translations';
 import { portfolioData } from './data/portfolio';
 
+// Kakao SDK Type Declaration
+declare global {
+    interface Window {
+        Kakao: any;
+    }
+}
+
 const App = () => {
     const [lang, setLang] = useState<'en' | 'ko'>('en');
     const [filter, setFilter] = useState<'all' | 'kitchen' | 'bath' | 'improvement'>('all');
@@ -204,6 +211,39 @@ const App = () => {
                             <MessageCircle size={20} />
                             {t.hero.kakao}
                         </a>
+                        <button
+                            onClick={() => {
+                                if (window.Kakao && window.Kakao.isInitialized()) {
+                                    window.Kakao.Share.sendDefault({
+                                        objectType: 'feed',
+                                        content: {
+                                            title: 'GL Design+Build',
+                                            description: 'since 2007 북버지니아 주거공간전문 | NOVA Kitchen & Bath Remodeling Specialist',
+                                            imageUrl: 'https://gl-design-build.vercel.app/logo.png',
+                                            link: {
+                                                mobileWebUrl: 'https://gl-design-build.vercel.app/',
+                                                webUrl: 'https://gl-design-build.vercel.app/',
+                                            },
+                                        },
+                                        buttons: [
+                                            {
+                                                title: '웹사이트 보기',
+                                                link: {
+                                                    mobileWebUrl: 'https://gl-design-build.vercel.app/',
+                                                    webUrl: 'https://gl-design-build.vercel.app/',
+                                                },
+                                            },
+                                        ],
+                                    });
+                                } else {
+                                    alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+                                }
+                            }}
+                            className="w-full md:w-auto bg-white/10 text-white px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 hover:bg-white/20 shadow-xl border border-white/20 flex items-center justify-center gap-2"
+                        >
+                            <Send size={20} />
+                            {t.hero.share}
+                        </button>
                     </motion.div>
                 </div>
             </section>

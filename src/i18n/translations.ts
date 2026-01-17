@@ -16,6 +16,7 @@ export type TranslationContent = {
         subtitle: string;
         cta: string;
         kakao: string;
+        share: string;
     };
     philosophy: {
         title: string;
@@ -67,7 +68,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             title: "Building Excellence with Sincerity",
             subtitle: "GL Design+Build crafts spaces that define the quality of your life.",
             cta: "Request Consultation",
-            kakao: "KakaoTalk"
+            kakao: "KakaoTalk",
+            share: "Share with Friends"
         },
         philosophy: {
             title: "Our Thoughts",
@@ -117,7 +119,8 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
             title: "진심을 짓는\n프리미엄 건축",
             subtitle: "GL Design+Build는 당신의 삶의 가치를 높이는 공간을 설계합니다.",
             cta: "무료 상담 신청",
-            kakao: "카카오톡 상담"
+            kakao: "카카오톡 상담",
+            share: "친구에게 공유"
         },
         philosophy: {
             title: "우리의 생각",
