@@ -33,6 +33,14 @@ const App = () => {
         }
     };
 
+    const handleKakaoShare = () => {
+        if (window.Kakao && window.Kakao.isInitialized()) {
+            window.Kakao.Share.sendCustom({
+                templateId: 128038,
+            });
+        }
+    };
+
     const t: TranslationContent = (translations as any)[lang];
 
     const [formState, setFormState] = useState({
@@ -212,33 +220,7 @@ const App = () => {
                             {t.hero.kakao}
                         </a>
                         <button
-                            onClick={() => {
-                                if (window.Kakao && window.Kakao.isInitialized()) {
-                                    window.Kakao.Share.sendDefault({
-                                        objectType: 'feed',
-                                        content: {
-                                            title: 'GL Design+Build',
-                                            description: 'since 2007 북버지니아 주거공간전문 | NOVA Kitchen & Bath Remodeling Specialist',
-                                            imageUrl: 'https://gl-design-build.vercel.app/logo.png',
-                                            link: {
-                                                mobileWebUrl: 'https://gl-design-build.vercel.app/',
-                                                webUrl: 'https://gl-design-build.vercel.app/',
-                                            },
-                                        },
-                                        buttons: [
-                                            {
-                                                title: '웹사이트 보기',
-                                                link: {
-                                                    mobileWebUrl: 'https://gl-design-build.vercel.app/',
-                                                    webUrl: 'https://gl-design-build.vercel.app/',
-                                                },
-                                            },
-                                        ],
-                                    });
-                                } else {
-                                    alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
-                                }
-                            }}
+                            onClick={handleKakaoShare}
                             className="w-full md:w-auto bg-white/10 text-white px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 hover:bg-white/20 shadow-xl border border-white/20 flex items-center justify-center gap-2"
                         >
                             <Send size={20} />
@@ -601,6 +583,14 @@ const App = () => {
                             <div className="flex gap-10">
                                 <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2]/60 hover:text-[#1877F2] hover:scale-110 transition-all"><Facebook size={24} /></a>
                                 <a href="https://www.youtube.com/watch?v=dzmaQedMc9s" target="_blank" rel="noopener noreferrer" className="text-[#FF0000]/60 hover:text-[#FF0000] hover:scale-110 transition-all"><Youtube size={24} /></a>
+                                <button
+                                    onClick={handleKakaoShare}
+                                    className="text-[#FEE500]/60 hover:text-[#FEE500] hover:scale-110 transition-all cursor-pointer"
+                                >
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.76 1.845 5.187 4.636 6.556-.204.704-.738 2.541-.845 2.924-.131.472.164.466.345.345.14-.093 2.24-1.52 3.134-2.126.907.213 1.84.327 2.729.327 5.523 0 10-3.477 10-7.75S17.523 3 12 3z" />
+                                    </svg>
+                                </button>
                                 <a href="https://www.flickr.com/photos/90832744@N05/albums/72157700948710755/" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 hover:scale-110 transition-all">
                                     <div className="flex gap-0.5">
                                         <span className="w-3 h-3 rounded-full bg-[#0063dc]" />
