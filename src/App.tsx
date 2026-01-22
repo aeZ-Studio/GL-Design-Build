@@ -34,10 +34,23 @@ const App = () => {
     };
 
     const handleKakaoShare = () => {
-        if (window.Kakao && window.Kakao.isInitialized()) {
+        try {
+            if (!window.Kakao) {
+                alert(lang === 'ko' ? '카카오 SDK를 불러오지 못했습니다.' : 'Kakao SDK not loaded.');
+                return;
+            }
+
+            // 만약 초기화가 안 되어 있다면 즉시 재초기화 시도
+            if (!window.Kakao.isInitialized()) {
+                window.Kakao.init('ae953bc09e6d628c5f9a5a3b8487c10e');
+            }
+
             window.Kakao.Share.sendCustom({
                 templateId: 128038,
             });
+        } catch (error) {
+            console.error('Kakao Share Error:', error);
+            alert(lang === 'ko' ? '공유하기를 실행하는 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' : 'Error opening Kakao Share.');
         }
     };
 
@@ -202,7 +215,7 @@ const App = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto font-medium mb-12 break-keep leading-relaxed"
+                        className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto font-medium mb-12 break-keep leading-relaxed whitespace-pre-line"
                     >
                         {t.hero.subtitle}
                     </motion.p>

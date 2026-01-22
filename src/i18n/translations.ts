@@ -66,7 +66,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
         },
         hero: {
             title: "Building Excellence with Sincerity",
-            subtitle: "GL Design+Build crafts spaces that define the quality of your life.",
+            subtitle: "GL Design+Build crafts spaces\nthat define the quality of your life.",
             cta: "Request Consultation",
             kakao: "KakaoTalk",
             share: "Share with Friends"
