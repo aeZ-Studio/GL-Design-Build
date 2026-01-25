@@ -34,23 +34,42 @@ const App = () => {
     };
 
     const handleKakaoShare = () => {
+        const KAKAO_KEY = '8920a81042631b46f2732bd31ab4d77e';
+        const TEMPLATE_ID = 128038;
+
+        const executeShare = () => {
+            if (window.Kakao && window.Kakao.isInitialized()) {
+                window.Kakao.Share.sendCustom({
+                    templateId: TEMPLATE_ID,
+                });
+            }
+        };
+
         try {
             if (!window.Kakao) {
-                alert(lang === 'ko' ? '카카오 SDK를 불러오지 못했습니다.' : 'Kakao SDK not loaded.');
+                const script = document.createElement('script');
+                script.src = 'https://developers.kakao.com/sdk/js/kakao.min.js';
+                script.onload = () => {
+                    if (window.Kakao && !window.Kakao.isInitialized()) {
+                        window.Kakao.init(KAKAO_KEY);
+                        executeShare();
+                    }
+                };
+                script.onerror = () => {
+                    alert('카카오 SDK 로드에 실패했습니다. 네트워크 상태를 확인해 주세요.');
+                };
+                document.head.appendChild(script);
                 return;
             }
 
-            // 만약 초기화가 안 되어 있다면 즉시 재초기화 시도
             if (!window.Kakao.isInitialized()) {
-                window.Kakao.init('ae953bc09e6d628c5f9a5a3b8487c10e');
+                window.Kakao.init(KAKAO_KEY);
             }
 
-            window.Kakao.Share.sendCustom({
-                templateId: 128038,
-            });
+            executeShare();
         } catch (error) {
             console.error('Kakao Share Error:', error);
-            alert(lang === 'ko' ? '공유하기를 실행하는 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' : 'Error opening Kakao Share.');
+            alert('공유하기를 실행하는 중 오류가 발생했습니다.');
         }
     };
 
@@ -510,7 +529,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 pt-4">
-                                    <a href="https://open.kakao.com/o/gQlXUX8h" target="_blank" rel="noopener noreferrer" className="bg-[#FEE500] text-[#3c1e1e] px-8 py-3 rounded-2xl font-black text-sm flex items-center gap-2 hover:scale-105 transition-all">
+                                    <a href="https://open.kakao.com/o/gQlXUX8h" target="_blank" rel="noopener noreferrer" className="bg-[#FEE500] text-[#3c1e1e] px-8 py-3 rounded-2xl font-black text-sm flex items-center gap-2 hover:scale-105 transition-all translate-x-[2px]">
                                         <MessageCircle size={18} />
                                         KakaoTalk OpenChat
                                     </a>
@@ -587,11 +606,11 @@ const App = () => {
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                             <div className="flex flex-col items-center lg:items-start">
                                 <img src="/logo.png" alt="GL Logo" className="h-10 w-auto mb-6 brightness-110 mix-blend-screen opacity-80" />
-                                <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 mb-6 group hover:bg-amber-500/20 transition-all duration-300">
+                                <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 mb-6 group hover:bg-amber-500/20 transition-all duration-300 whitespace-nowrap">
                                     <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] animate-pulse" />
-                                    <span className="text-xs md:text-sm font-black text-amber-500 uppercase tracking-wider">{t.license}</span>
+                                    <span className="text-xs md:text-sm font-black text-amber-500 tracking-wider break-keep">{t.license}</span>
                                 </div>
-                                <p className="text-white/40 text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase whitespace-nowrap">{t.motto}</p>
+                                <p className="text-white/80 text-[11px] md:text-xs font-bold tracking-widest whitespace-nowrap">{t.motto}</p>
                             </div>
                             <div className="flex gap-10">
                                 <a href="https://www.facebook.com/GLdesignBuildcom/photos" target="_blank" rel="noopener noreferrer" className="text-[#1877F2]/60 hover:text-[#1877F2] hover:scale-110 transition-all"><Facebook size={24} /></a>
@@ -625,24 +644,24 @@ const App = () => {
                                 </button>
 
                                 {/* Small Privacy & Copyright */}
-                                <div className="flex flex-col items-center gap-1 opacity-20">
-                                    <p className="text-[7px] font-thin text-white leading-none tracking-tighter uppercase">
+                                <div className="flex flex-col items-center gap-2 opacity-80 mt-4">
+                                    <p className="text-[10px] font-bold text-white/90 leading-none tracking-tight">
                                         Certified Private Analytics: 100% On-Device / No Cloud Sync.
                                     </p>
-                                    <p className="text-[8px] text-white/60 mb-1 tracking-tight uppercase font-medium">
-                                        © 2026 All Rights Reserved. <span className="text-white font-bold">aeZ Studio</span>
+                                    <p className="text-[11px] text-white mb-1 tracking-tight font-black">
+                                        © 2026 All Rights Reserved. <span className="text-amber-500 font-bold">aeZ Studio</span>
                                     </p>
                                 </div>
 
-                                {/* Studio Hub Link (Gray Capsule) */}
+                                {/* Studio Hub Link (Clear Capsule) */}
                                 <a
                                     href="https://aez-hub.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center text-[10px] font-black text-zinc-500 hover:text-amber-500 transition-colors gap-1.5 px-4 py-1.5 rounded-full hover:bg-white/5 border border-white/5 uppercase tracking-widest italic"
+                                    className="inline-flex items-center text-[12px] font-black text-white/70 hover:text-amber-500 transition-all gap-2 px-6 py-2.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 tracking-widest"
                                 >
                                     <span>aeZ Studio Hub</span>
-                                    <ChevronRight size={10} />
+                                    <ChevronRight size={12} />
                                 </a>
                             </div>
                         </div>

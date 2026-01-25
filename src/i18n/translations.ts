@@ -104,7 +104,7 @@ export const translations: { en: TranslationContent; ko: TranslationContent } = 
     },
     ko: {
         motto: "God is Love, Great Living, Good Life",
-        license: "Commonwealth of Virginia Class A Contractor '최상위 건축면허(HIC, CBC, RBC)' & 보험 완비",
+        license: "버지니아 주정부 최상위 건축면허(HIC, CBC, RBC) & 현장사고에 대비한 보험 완비",
         nav: {
             services: "서비스",
             portfolio: "포트폴리오",
