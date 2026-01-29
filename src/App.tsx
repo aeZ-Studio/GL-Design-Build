@@ -182,7 +182,10 @@ const App = () => {
             {/* Navigation */}
             <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="flex items-center gap-4 cursor-pointer active:scale-95 transition-transform"
+                    >
                         <img src="/logo.png" alt="GL Design+Build" className="h-10 w-auto" />
                         <div className="flex flex-col">
                             <span className="text-xl font-black tracking-tighter leading-none">GL <span className="text-amber-500">Design+Build</span></span>
